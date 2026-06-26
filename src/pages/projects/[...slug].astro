@@ -5,6 +5,7 @@ import { getCollection, render } from 'astro:content'
 
 import PageLayout from '@/layouts/CommonPage.astro'
 import { Button, Icon } from 'astro-pure/user'
+import type { IconsType } from 'astro-pure/types'
 
 export const getStaticPaths = (async () => {
   const projects = await getCollection('projects')
@@ -17,7 +18,7 @@ export const getStaticPaths = (async () => {
 const { project } = Astro.props
 const { Content, headings } = await render(project)
 
-const projectIconSet: Record<string, string> = {
+const projectIconSet: Record<string, IconsType> = {
   github: 'github-circle',
   site: 'earth',
   doc: 'document',
@@ -44,7 +45,7 @@ const projectIconSet: Record<string, string> = {
         <Button
           title={link.type.charAt(0).toUpperCase() + link.type.slice(1)}
           href={link.href}
-          variant='ghost'
+          variant='pill'
           target='_blank'
         >
           <Icon class='size-4' name={projectIconSet[link.type] || 'earth'} slot='icon' />
