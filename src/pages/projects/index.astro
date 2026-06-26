@@ -1,8 +1,12 @@
 ---
 import { Image } from 'astro:assets'
+import { getCollection } from 'astro:content'
 
 import PageLayout from '@/layouts/CommonPage.astro'
 import ProjectSection from '@/components/projects/ProjectSection.astro'
+
+const projects = await getCollection('projects')
+const sortedProjects = projects.sort((a, b) => (a.data.order || 999) - (b.data.order || 999))
 
 const headings = [
   { depth: 2, slug: 'programs', text: 'Programs' }
@@ -22,15 +26,10 @@ const headings = [
 
   <h2 id='programs'>Programs</h2>
   <ProjectSection
-    projects={[
-      {
-        name: '个人网站',
-        description: '基于 Astro Theme Pure 的个人网站',
-        links: [
-          { type: 'github', href: 'https://github.com/Linqiyu-0921/LaneQiyu' },
-          { type: 'site', href: 'https://laneqiqu.pages.dev/' }
-        ]
-      }
-    ]}
+    projects={sortedProjects.map((p) => ({
+      name: p.data.title,
+      description: p.data.description,
+      links: p.data.links.map((l) => ({ type: l.type, href: l.href }))
+    }))}
   />
 </PageLayout>

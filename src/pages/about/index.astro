@@ -1,5 +1,5 @@
 ---
-import { Button, Collapse, Spoiler, Timeline } from 'astro-pure/user'
+import { Button, Timeline } from 'astro-pure/user'
 import PageLayout from '@/layouts/CommonPage.astro'
 import Substats from '@/components/about/Substats.astro'
 import ToolSection from '@/components/about/ToolSection.astro'
@@ -9,8 +9,8 @@ const headings = [
   { depth: 2, slug: 'hobbies', text: 'Hobbies' },
   { depth: 2, slug: 'tools', text: 'Tools' },
   { depth: 2, slug: 'social-networks', text: 'Social Networks' },
-  { depth: 2, slug: 'gossips', text: 'Gossips' },
-  { depth: 2, slug: 'about-blog', text: 'About Blog' }
+  { depth: 2, slug: 'timeline', text: 'Timeline' },
+  { depth: 2, slug: 'contact', text: 'Contact' }
 ]
 ---
 
@@ -177,37 +177,73 @@ const headings = [
     ]}
   />
 
-  {/* gossips */}
-  <h2 id='gossips'>Gossips</h2>
-  <Collapse title='关于这个网站'>
-    基于 Astro Theme Pure 模板搭建，部署在 Cloudflare Pages。用 Claude Code 驱动开发。
-  </Collapse>
-
-  {/* about-blog */}
-  <h2 id='about-blog'>About Blog</h2>
-  <p>Website history:</p>
+  {/* timeline */}
+  <h2 id='timeline'>Timeline</h2>
+  <p>一些重要的时刻。</p>
   <Timeline
     events={[
       {
-        date: '2026-06-24',
-        content:
-          '基于 <a href="https://github.com/cworld1/astro-theme-pure" target="_blank">Astro Theme Pure</a> 模板搭建个人网站'
+        date: '2026-06',
+        content: '基于 <a href="https://github.com/cworld1/astro-theme-pure" target="_blank">Astro Theme Pure</a> 模板搭建个人网站'
+      },
+      {
+        date: '2025-05',
+        content: '公众号「乘以零的万能删除」开始定期更新散文与生活记录'
+      },
+      {
+        date: '2023-09',
+        content: '进入南京工业大学，就读地理空间信息工程专业'
+      },
+      {
+        date: '2023-07',
+        content: '毕业于云南师大附中呈贡学校'
       }
     ]}
   />
-  <p>
-    技术栈与服务：
-  </p>
-  <ul>
-    <li>
-      Framework & Theme: <a href='https://astro.build/' target='_blank'>Astro</a> + <a
-        href='https://github.com/cworld1/astro-theme-pure'
-        target='_blank'>Astro Theme Pure</a
+
+  {/* contact */}
+  <h2 id='contact'>Contact</h2>
+  <p>可以通过以下方式找到我。</p>
+  <div class='not-prose mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2'>
+    <div class='flex flex-col items-center gap-3 rounded-xl border p-4'>
+      <img src='/wechat-qrcode.jpg' alt='微信二维码' class='h-40 w-40 rounded-lg object-cover' />
+      <span class='text-sm text-muted-foreground'>微信扫码添加</span>
+    </div>
+    <div class='flex flex-col gap-3'>
+      <a
+        class='flex items-center gap-3 rounded-xl border p-4 transition-colors hover:border-primary/40 hover:bg-muted/50'
+        href='https://github.com/Linqiyu-0921'
+        target='_blank'
       >
-    </li>
-    <li>
-      Site hosting: <a href='https://pages.cloudflare.com/' target='_blank'>Cloudflare Pages</a>
-    </li>
-    <li>Comment system: <a href='https://waline.js.org' target='_blank'>Waline</a></li>
-  </ul>
+        <div class='flex h-10 w-10 items-center justify-center rounded-lg bg-muted text-lg'>⚡</div>
+        <div class='flex-1'>
+          <div class='text-sm font-medium'>GitHub</div>
+          <div class='text-xs text-muted-foreground'>Linqiyu-0921</div>
+        </div>
+        <span class='text-muted-foreground'>→</span>
+      </a>
+      <a
+        class='flex items-center gap-3 rounded-xl border p-4 transition-colors hover:border-primary/40 hover:bg-muted/50'
+        href='mailto:lane@example.com'
+      >
+        <div class='flex h-10 w-10 items-center justify-center rounded-lg bg-muted text-lg'>📧</div>
+        <div class='flex-1'>
+          <div class='text-sm font-medium'>邮箱</div>
+          <div class='text-xs text-muted-foreground'>联系我</div>
+        </div>
+        <span class='text-muted-foreground'>→</span>
+      </a>
+      <a
+        class='flex items-center gap-3 rounded-xl border p-4 transition-colors hover:border-primary/40 hover:bg-muted/50'
+        href='#'
+      >
+        <div class='flex h-10 w-10 items-center justify-center rounded-lg bg-muted text-lg'>📖</div>
+        <div class='flex-1'>
+          <div class='text-sm font-medium'>公众号</div>
+          <div class='text-xs text-muted-foreground'>乘以零的万能删除</div>
+        </div>
+        <span class='text-muted-foreground'>→</span>
+      </a>
+    </div>
+  </div>
 </PageLayout>

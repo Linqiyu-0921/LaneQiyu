@@ -1,0 +1,57 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import { getCollection, render } from 'astro:content'
+
+import PageLayout from '@/layouts/CommonPage.astro'
+import { Button, Icon } from 'astro-pure/user'
+
+export const getStaticPaths = (async () => {
+  const projects = await getCollection('projects')
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project }
+  }))
+}) satisfies GetStaticPaths
+
+const { project } = Astro.props
+const { Content, headings } = await render(project)
+
+const projectIconSet: Record<string, string> = {
+  github: 'github-circle',
+  site: 'earth',
+  doc: 'document',
+  release: 'package'
+}
+---
+
+<PageLayout title={project.data.title} {headings}>
+  <p class='text-muted-foreground'>{project.data.description}</p>
+
+  {project.data.heroImage && (
+    <Image
+      src={project.data.heroImage.src}
+      alt={project.data.heroImage.alt || project.data.title}
+      inferSize={project.data.heroImage.inferSize}
+      loading='lazy'
+      class='my-4 rounded-xl'
+    />
+  )}
+
+  {project.data.links.length > 0 && (
+    <div class='not-prose mb-6 flex flex-wrap gap-2'>
+      {project.data.links.map((link) => (
+        <Button
+          title={link.type.charAt(0).toUpperCase() + link.type.slice(1)}
+          href={link.href}
+          variant='ghost'
+          target='_blank'
+        >
+          <Icon class='size-4' name={projectIconSet[link.type] || 'earth'} slot='icon' />
+        </Button>
+      ))}
+    </div>
+  )}
+
+  <Content />
+</PageLayout>

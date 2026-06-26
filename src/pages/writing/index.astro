@@ -1,0 +1,157 @@
+---
+import PageLayout from '@/layouts/CommonPage.astro'
+import { Button } from 'astro-pure/user'
+
+interface Article {
+  title: string
+  excerpt: string
+  date: string
+  url: string
+  hasImage: boolean
+  imageColor?: string
+}
+
+const articles: Article[] = [
+  {
+    title: '五月，有人相爱，有人徘徊。',
+    excerpt: '五月的风带着栀子花的香气，穿过城市的每一条街道。有人在这个季节相遇，也有人在这个季节告别。',
+    date: '2025-05',
+    url: 'https://mp.weixin.qq.com/s/example1',
+    hasImage: true,
+    imageColor: 'linear-gradient(135deg, #c9b99a, #8b7d6b)'
+  },
+  {
+    title: '告诉北方，我不会在五月离开',
+    excerpt: '北方的五月是干燥的，风里带着沙土的味道。但我知道，有些告别不需要等到秋天。',
+    date: '2025-05',
+    url: 'https://mp.weixin.qq.com/s/example2',
+    hasImage: true,
+    imageColor: 'linear-gradient(135deg, #a8c5d6, #6b8fa3)'
+  },
+  {
+    title: '并不可惜的一分钟，还好我在路上！',
+    excerpt: '一分钟能做什么？足够让一个人从犹豫变成决定，足够让一趟列车从站台驶向远方。',
+    date: '2025-05',
+    url: 'https://mp.weixin.qq.com/s/example3',
+    hasImage: true,
+    imageColor: 'linear-gradient(135deg, #b8c9a3, #7a9a6b)'
+  },
+  {
+    title: '温柔',
+    excerpt: '"如果说，你最喜欢的五月天的一首歌，你会选择什么？""可能是\'温柔\'吧。""好巧，我也是诶。"',
+    date: '2025-05',
+    url: 'https://mp.weixin.qq.com/s/example4',
+    hasImage: false
+  },
+  {
+    title: '入梦一场，又见花朝，红楼莫忘。',
+    excerpt: '高中时，很爱《红楼》。全书读下一遍，喜欢的章节回目更是多遍返回，也因其名字带有一个霖字，会常常被唤作"林妹妹"。',
+    date: '2025-05',
+    url: 'https://mp.weixin.qq.com/s/example5',
+    hasImage: true,
+    imageColor: 'linear-gradient(135deg, #c4a8b8, #8b6b7a)'
+  },
+  {
+    title: '快留下来！要说再见2024！',
+    excerpt: '"这一年我们可以不用更好但是要值得。"——安溥。抓住2024最后的时间记录一点文字。',
+    date: '2024-12',
+    url: 'https://mp.weixin.qq.com/s/example6',
+    hasImage: true,
+    imageColor: 'linear-gradient(135deg, #d4a574, #8b6b4a)'
+  },
+  {
+    title: '秋浓，桂花香与雪山白',
+    excerpt: '又一年国庆中秋，今年的秋好像晚来了几天，但是秋天如约而至。南京的梧桐已经金黄落叶。',
+    date: '2024-10',
+    url: 'https://mp.weixin.qq.com/s/example7',
+    hasImage: true,
+    imageColor: 'linear-gradient(135deg, #d4c49a, #a38b5c)'
+  },
+  {
+    title: '站在能分割世界的桥上，我看春风。',
+    excerpt: '好久没有写一些东西了。回到丽江后日子感觉过的更加快了，这个小城似乎真的有了世外桃源的韵味。',
+    date: '2025-01',
+    url: 'https://mp.weixin.qq.com/s/example8',
+    hasImage: true,
+    imageColor: 'linear-gradient(135deg, #9ab8c4, #6b8a94)'
+  },
+  {
+    title: '2025没有看到一场日出。',
+    excerpt: '二零二五年这一年，总是让我想起进退两难的泥沼——每迈一步都几乎把整只鞋陷掉那般滞重而深沉。',
+    date: '2025-01',
+    url: 'https://mp.weixin.qq.com/s/example9',
+    hasImage: false
+  },
+  {
+    title: '谷雨之后，梧桐絮如雨下',
+    excerpt: '应该写一些什么，纪念一下这个日子。其实也不是什么很重要的日子，就是很平常的一天。大概是，今天足够热吧。',
+    date: '2024-04',
+    url: 'https://mp.weixin.qq.com/s/example10',
+    hasImage: false
+  },
+  {
+    title: '走在时间的旧房子里，在立夏之后',
+    excerpt: '这几日一直想坚持把一年的日子记录下，以此振奋寡淡而不坚定的文字手记日志工作。',
+    date: '2024-05',
+    url: 'https://mp.weixin.qq.com/s/example11',
+    hasImage: false
+  },
+  {
+    title: '慢慢走，会看到的（2023说说话。）',
+    excerpt: '火车咚咚向前，路程摇摇晃晃。在从南京到成都的火车上，终于有时间和情绪来写这篇关于2023年的年度总结。',
+    date: '2024-01',
+    url: 'https://mp.weixin.qq.com/s/example12',
+    hasImage: true,
+    imageColor: 'linear-gradient(135deg, #a3b8c4, #6b8494)'
+  }
+]
+
+const headings = [
+  { depth: 2, slug: 'articles', text: 'Articles' }
+]
+---
+
+<PageLayout title='Writing' {headings}>
+  <p>
+    「乘以零的万能删除」公众号文章合集。文字是时间的化石，每一段记录都是一次对生活的叩问。
+  </p>
+
+  <h2 id='articles'>Articles</h2>
+
+  <div class='flex flex-col gap-y-3'>
+    {articles.map((article) => (
+      <a
+        class='group flex items-start gap-x-4 rounded-xl border p-4 transition-colors hover:border-primary/40 hover:bg-muted/50 sm:p-5'
+        href={article.url}
+        target='_blank'
+      >
+        {article.hasImage ? (
+          <div
+            class='h-24 w-36 flex-shrink-0 rounded-lg sm:h-28 sm:w-44'
+            style={{ background: article.imageColor || 'hsl(var(--muted))' }}
+          />
+        ) : (
+          <div class='hidden h-24 w-36 flex-shrink-0 rounded-lg bg-muted sm:block' />
+        )}
+        <div class='flex min-w-0 flex-1 flex-col justify-center'>
+          <div class='mb-1 text-xs text-muted-foreground'>
+            {article.date} · 乘以零的万能删除
+          </div>
+          <div class='mb-1 text-sm font-medium leading-snug text-foreground line-clamp-1 group-hover:text-primary sm:text-base'>
+            {article.title}
+          </div>
+          <div class='text-xs leading-relaxed text-muted-foreground line-clamp-2 sm:text-sm'>
+            {article.excerpt}
+          </div>
+        </div>
+        <span class='mt-2 flex-shrink-0 text-muted-foreground transition-colors group-hover:text-primary'>
+          →
+        </span>
+      </a>
+    ))}
+  </div>
+
+  <div class='mt-6'>
+    <Button title='访问公众号' href='https://mp.weixin.qq.com' variant='ahead' target='_blank' />
+  </div>
+</PageLayout>

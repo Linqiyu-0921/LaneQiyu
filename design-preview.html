@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LaneQiyu — Design Preview (Theme Pure Style)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Satoshi:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Astro Theme Pure CSS Variables ===== */
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 240 10% 3.9%;
+      --card: 0 0% 100%;
+      --muted: 240 4.8% 95.9%;
+      --muted-foreground: 240 3.8% 46.1%;
+      --border: 240 5.9% 90%;
+      --input: 240 5.9% 90%;
+      --ring: 240 5.9% 10%;
+      --primary: 213 55% 53%;
+      --radius: 0.75rem;
+    }
+    .dark {
+      --background: 240 10% 3.9%;
+      --foreground: 0 0% 98%;
+      --card: 240 10% 3.9%;
+      --muted: 240 3.7% 15.9%;
+      --muted-foreground: 240 5% 64.9%;
+      --border: 240 3.7% 15.9%;
+      --input: 240 3.7% 15.9%;
+      --ring: 240 4.9% 83.9%;
+    }
+
+    /* ===== Reset ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans SC', 'PingFang SC', -apple-system, sans-serif;
+      background: hsl(var(--background));
+      color: hsl(var(--foreground));
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== Layout ===== */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    /* ===== Dark Mode Toggle ===== */
+    .mode-toggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 100;
+      padding: 6px 14px;
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      background: hsl(var(--card));
+      color: hsl(var(--muted-foreground));
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .mode-toggle:hover {
+      border-color: hsl(var(--primary));
+      color: hsl(var(--foreground));
+    }
+
+    /* ===== Section Headers ===== */
+    .page-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+    .section-heading {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+
+    /* ===== Label (from astro-pure) ===== */
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border: 1px solid hsl(var(--border));
+      border-radius: 9999px;
+      font-size: 13px;
+      color: hsl(var(--muted-foreground));
+      background: hsl(var(--muted));
+    }
+
+    /* ===== Button (from astro-pure) ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: hsl(var(--card));
+      color: hsl(var(--foreground));
+    }
+    .btn:hover {
+      background: hsl(var(--muted));
+    }
+    .btn-primary {
+      background: hsl(var(--primary));
+      color: white;
+      border-color: hsl(var(--primary));
+    }
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    /* ===== Section Spacing ===== */
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    /* ========================================
+       MODULE 1: Writing Page
+       ======================================== */
+
+    /* Article list — simple clean style matching blog post list */
+    .article-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .article-item {
+      display: flex;
+      gap: 1.25rem;
+      padding: 1.25rem;
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      transition: border-color 0.2s, background 0.2s;
+      cursor: pointer;
+    }
+    .article-item:hover {
+      border-color: hsl(var(--primary) / 0.4);
+      background: hsl(var(--muted) / 0.5);
+    }
+
+    .article-thumb {
+      width: 140px;
+      height: 90px;
+      border-radius: calc(var(--radius) - 2px);
+      overflow: hidden;
+      flex-shrink: 0;
+      background: hsl(var(--muted));
+    }
+    .article-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* Placeholder gradient for demo */
+    .thumb-1 { background: linear-gradient(135deg, #c9b99a, #8b7d6b); }
+    .thumb-2 { background: linear-gradient(135deg, #a8c5d6, #6b8fa3); }
+    .thumb-3 { background: linear-gradient(135deg, #b8c9a3, #7a9a6b); }
+    .thumb-4 { background: linear-gradient(135deg, #d4a574, #8b6b4a); }
+    .thumb-5 { background: linear-gradient(135deg, #c4a8b8, #8b6b7a); }
+
+    .article-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+    .article-meta {
+      font-size: 12px;
+      color: hsl(var(--muted-foreground));
+      margin-bottom: 4px;
+    }
+    .article-title {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 4px;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .article-excerpt {
+      font-size: 13px;
+      color: hsl(var(--muted-foreground));
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .article-link-icon {
+      color: hsl(var(--muted-foreground));
+      font-size: 16px;
+      align-self: center;
+      transition: color 0.2s;
+    }
+    .article-item:hover .article-link-icon {
+      color: hsl(var(--primary));
+    }
+
+    /* No-image variant */
+    .article-item.no-thumb .article-thumb {
+      display: none;
+    }
+
+    /* ========================================
+       MODULE 2: Tab Tools
+       ======================================== */
+    .tab-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid hsl(var(--border));
+      margin-bottom: 1.25rem;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: hsl(var(--muted-foreground));
+      cursor: pointer;
+      position: relative;
+      white-space: nowrap;
+      border: none;
+      background: none;
+      font-family: inherit;
+      transition: color 0.2s;
+    }
+    .tab-btn:hover {
+      color: hsl(var(--foreground));
+    }
+    .tab-btn.active {
+      color: hsl(var(--foreground));
+    }
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: hsl(var(--primary));
+    }
+
+    .tab-panel {
+      display: none;
+    }
+    .tab-panel.active {
+      display: block;
+      animation: tabFadeIn 0.25s ease;
+    }
+    @keyframes tabFadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Tool grid — reuses ToolSection style */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    .tool-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border: 1px solid hsl(var(--border));
+      border-radius: calc(var(--radius) - 2px);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .tool-card:hover {
+      border-color: hsl(var(--primary) / 0.4);
+      background: hsl(var(--muted) / 0.5);
+    }
+    .tool-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: hsl(var(--muted));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .tool-card-name {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .tool-card-desc {
+      font-size: 12px;
+      color: hsl(var(--muted-foreground));
+    }
+
+    /* ========================================
+       MODULE 3: Contact
+       ======================================== */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .qr-wrapper {
+      text-align: center;
+    }
+    .qr-image {
+      width: 180px;
+      height: 180px;
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: hsl(var(--muted));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .qr-image:hover {
+      border-color: hsl(var(--primary));
+    }
+    .qr-hint {
+      font-size: 12px;
+      color: hsl(var(--muted-foreground));
+      margin-top: 8px;
+    }
+
+    .social-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .social-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .social-item:hover {
+      border-color: hsl(var(--primary) / 0.4);
+      background: hsl(var(--muted) / 0.5);
+    }
+    .social-item-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: hsl(var(--muted));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .social-item-info { flex: 1; }
+    .social-item-name {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .social-item-detail {
+      font-size: 12px;
+      color: hsl(var(--muted-foreground));
+    }
+    .social-item-arrow {
+      color: hsl(var(--muted-foreground));
+      transition: color 0.2s;
+    }
+    .social-item:hover .social-item-arrow {
+      color: hsl(var(--primary));
+    }
+
+    /* ========================================
+       Responsive
+       ======================================== */
+    @media (max-width: 640px) {
+      .article-item {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .article-thumb {
+        width: 100%;
+        height: 160px;
+      }
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+      .qr-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .tool-grid {
+        grid-template-columns: 1fr;
+      }
+      .tab-btn {
+        padding: 8px 14px;
+        font-size: 13px;
+      }
+    }
+
+    /* ===== Divider ===== */
+    .divider {
+      height: 1px;
+      background: hsl(var(--border));
+      margin: 3rem 0;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="mode-toggle" onclick="document.body.classList.toggle('dark')">
+    切换深色模式
+  </button>
+
+  <div class="container">
+    <h1 class="page-title">Design Preview — Astro Theme Pure 风格</h1>
+    <p style="color: hsl(var(--muted-foreground)); margin-bottom: 2rem; font-size: 14px;">
+      保留原有设计系统，新增模块使用相同的 CSS 变量、组件风格和间距规范。
+    </p>
+
+    <!-- ========== MODULE 1: Writing Page ========== -->
+    <div class="section">
+      <h2 class="section-heading">Writing — 公众号文章</h2>
+
+      <div class="article-list">
+        <!-- Article 1 — with image -->
+        <a class="article-item" href="#" target="_blank">
+          <div class="article-thumb thumb-1"></div>
+          <div class="article-info">
+            <div class="article-meta">2025-05-25 · 乘以零的万能删除</div>
+            <div class="article-title">五月，有人相爱，有人徘徊。</div>
+            <div class="article-excerpt">五月的风带着栀子花的香气，穿过城市的每一条街道。有人在这个季节相遇，也有人在这个季节告别。</div>
+          </div>
+          <span class="article-link-icon">→</span>
+        </a>
+
+        <!-- Article 2 — with image -->
+        <a class="article-item" href="#" target="_blank">
+          <div class="article-thumb thumb-2"></div>
+          <div class="article-info">
+            <div class="article-meta">2025-05-20 · 乘以零的万能删除</div>
+            <div class="article-title">告诉北方，我不会在五月离开</div>
+            <div class="article-excerpt">北方的五月是干燥的，风里带着沙土的味道。但我知道，有些告别不需要等到秋天。</div>
+          </div>
+          <span class="article-link-icon">→</span>
+        </a>
+
+        <!-- Article 3 — with image -->
+        <a class="article-item" href="#" target="_blank">
+          <div class="article-thumb thumb-3"></div>
+          <div class="article-info">
+            <div class="article-meta">2025-05-15 · 乘以零的万能删除</div>
+            <div class="article-title">并不可惜的一分钟，还好我在路上！</div>
+            <div class="article-excerpt">一分钟能做什么？足够让一个人从犹豫变成决定，足够让一趟列车从站台驶向远方。</div>
+          </div>
+          <span class="article-link-icon">→</span>
+        </a>
+
+        <!-- Article 4 — no image -->
+        <a class="article-item no-thumb" href="#" target="_blank">
+          <div class="article-thumb"></div>
+          <div class="article-info">
+            <div class="article-meta">2025-05-10 · 乘以零的万能删除</div>
+            <div class="article-title">温柔</div>
+            <div class="article-excerpt">如果说，你最喜欢的五月天的一首歌，你会选择什么？"可能是'温柔'吧。"</div>
+          </div>
+          <span class="article-link-icon">→</span>
+        </a>
+
+        <!-- Article 5 — with image -->
+        <a class="article-item" href="#" target="_blank">
+          <div class="article-thumb thumb-4"></div>
+          <div class="article-info">
+            <div class="article-meta">2024-12-31 · 乘以零的万能删除</div>
+            <div class="article-title">快留下来！要说再见2024！</div>
+            <div class="article-excerpt">二零二四年的最后一天，我站在城市的高处，看着远处的灯火一盏一盏亮起来。</div>
+          </div>
+          <span class="article-link-icon">→</span>
+        </a>
+
+        <!-- Article 6 — with image -->
+        <a class="article-item" href="#" target="_blank">
+          <div class="article-thumb thumb-5"></div>
+          <div class="article-info">
+            <div class="article-meta">2024-12-20 · 乘以零的万能删除</div>
+            <div class="article-title">秋浓，桂花香与雪山白</div>
+            <div class="article-excerpt">秋天的桂花香和雪山的白，是两种截然不同的美，却在这个季节里相遇。</div>
+          </div>
+          <span class="article-link-icon">→</span>
+        </a>
+      </div>
+
+      <div style="margin-top: 1rem;">
+        <button class="btn">查看全部文章 →</button>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ========== MODULE 2: Tab Tools ========== -->
+    <div class="section">
+      <h2 class="section-heading">Tools — Tab 切换</h2>
+
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab(this, 'design')">设计</button>
+        <button class="tab-btn" onclick="switchTab(this, 'productivity')">效率</button>
+        <button class="tab-btn" onclick="switchTab(this, 'dev')">开发</button>
+        <button class="tab-btn" onclick="switchTab(this, 'env')">环境</button>
+      </div>
+
+      <div class="tab-panel active" id="panel-design">
+        <div class="tool-grid">
+          <a class="tool-card" href="#" target="_blank">
+            <div class="tool-card-icon">🎨</div>
+            <div>
+              <div class="tool-card-name">Photoshop</div>
+              <div class="tool-card-desc">Picture Editing</div>
+            </div>
+          </a>
+          <a class="tool-card" href="#" target="_blank">
+            <div class="tool-card-icon">✏️</div>
+            <div>
+              <div class="tool-card-name">Illustrator</div>
+              <div class="tool-card-desc">Vector Drawing</div>
+            </div>
+          </a>
+          <a class="tool-card" href="#" target="_blank">
+            <div class="tool-card-icon">🎬</div>
+            <div>
+              <div class="tool-card-name">After Effects</div>
+              <div class="tool-card-desc">Motion Graphics</div>
+            </div>
+          </a>
+          <a class="tool-card" href="#" target="_blank">
+            <div class="tool-card-icon">🎞️</div>
+            <div>
+              <div class="tool-card-name">Premiere Pro</div>
+              <div class="tool-card-desc">Video Editing</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel-productivity">
+        <div class="tool-grid">
+          <a class="tool-card" href="#" target="_blank">
+            <div class="tool-card-icon">🌐</div>
+            <div>
+              <div class="tool-card-name">Chrome</div>
+              <div class="tool-card-desc">Browser</div>
+            </div>
+          </a>
+          <a class="tool-card" href="#" target="_blank">
+            <div class="tool-card-icon">🦊</div>
+            <div>
+              <div class="tool-card-name">Firefox</div>
+              <div class="tool-card-desc">Browser</div>
+            </div>
+          </a>
+          <a class="tool-card" href="#" target="_blank">
+            <div class="tool-card-icon">📝</div>
+            <div>
+              <div class="tool-card-name">Notion</div>
+              <div class="tool-card-desc">Note Taking</div>
+            </div>
+          </a>
+          <a class="tool-card" href="#" target="_blank">
+            <div class="tool-card-icon">📄</div>
+            <div>
+              <div class="tool-card-name">Typora</div>
+              <div class="tool-card-desc">Markdown Editor</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel-dev">
+        <div class="tool-grid">
+          <a class="tool-card" href="#" target="_blank">
+            <div class="tool-card-icon">💻</div>
+            <div>
+              <div class="tool-card-name">VS Code</div>
+              <div class="tool-card-desc">IDE</div>
+            </div>
+          </a>
+          <a class="tool-card" href="#" target="_blank">
+            <div class="tool-card-icon">🟢</div>
+            <div>
+              <div class="tool-card-name">Neovim</div>
+              <div class="tool-card-desc">IDE</div>
+            </div>
+          </a>
+          <a class="tool-card" href="#" target="_blank">
+            <div class="tool-card-icon">🟠</div>
+            <div>
+              <div class="tool-card-name">Sublime Text</div>
+              <div class="tool-card-desc">IDE</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel-env">
+        <div class="tool-grid">
+          <a class="tool-card" href="#" target="_blank">
+            <div class="tool-card-icon">🏗️</div>
+            <div>
+              <div class="tool-card-name">Arch Linux</div>
+              <div class="tool-card-desc">Linux Distribution</div>
+            </div>
+          </a>
+          <a class="tool-card" href="#" target="_blank">
+            <div class="tool-card-icon">🟠</div>
+            <div>
+              <div class="tool-card-name">Ubuntu 24.04</div>
+              <div class="tool-card-desc">Linux Distribution</div>
+            </div>
+          </a>
+          <a class="tool-card" href="#" target="_blank">
+            <div class="tool-card-icon">🍎</div>
+            <div>
+              <div class="tool-card-name">macOS</div>
+              <div class="tool-card-desc">MacBook Air</div>
+            </div>
+          </a>
+          <a class="tool-card" href="#" target="_blank">
+            <div class="tool-card-icon">🪟</div>
+            <div>
+              <div class="tool-card-name">Windows 11</div>
+              <div class="tool-card-desc">Framework Laptop 16</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ========== MODULE 3: Contact ========== -->
+    <div class="section">
+      <h2 class="section-heading">Contact — 找到我</h2>
+
+      <div class="contact-layout">
+        <div class="qr-wrapper">
+          <div class="qr-image">💬</div>
+          <div class="qr-hint">微信扫码添加</div>
+        </div>
+
+        <div class="social-list">
+          <a class="social-item" href="https://github.com/Linqiyu-0921" target="_blank">
+            <div class="social-item-icon">⚡</div>
+            <div class="social-item-info">
+              <div class="social-item-name">GitHub</div>
+              <div class="social-item-detail">Linqiyu-0921</div>
+            </div>
+            <span class="social-item-arrow">→</span>
+          </a>
+          <a class="social-item" href="#">
+            <div class="social-item-icon">📧</div>
+            <div class="social-item-info">
+              <div class="social-item-name">邮箱</div>
+              <div class="social-item-detail">联系我</div>
+            </div>
+            <span class="social-item-arrow">→</span>
+          </a>
+          <a class="social-item" href="#">
+            <div class="social-item-icon">📖</div>
+            <div class="social-item-info">
+              <div class="social-item-name">公众号</div>
+              <div class="social-item-detail">乘以零的万能删除</div>
+            </div>
+            <span class="social-item-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div style="height: 60px;"></div>
+  </div>
+
+  <script>
+    function switchTab(btn, tab) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + tab).classList.add('active');
+    }
+  </script>
+</body>
+</html>
