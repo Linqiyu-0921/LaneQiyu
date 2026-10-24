@@ -1,99 +1,50 @@
-# Astro Theme Pure
+# Lane Qiyu · 个人网站
 
-English | [简体中文](./README-zh-CN.md)
+个人博客与作品展示网站，记录写作、城市观察和项目实践。基于 Astro Theme Pure 定制，当前页面包含 Blog、Writing、Projects 和 About。
 
-A simple, fast and powerful blog & document theme built by Astro.
+- 网站：[laneqiyu.cn](https://laneqiyu.cn)
+- 配置中的 Cloudflare Pages 地址：[laneqiqu.pages.dev](https://laneqiqu.pages.dev)
+- 定位：个人内容站；与数字园林 `linjian`、交互原型 `laneqiyu-world` 分别维护。
 
-[![GitHub deployments](https://img.shields.io/github/deployments/cworld1/astro-theme-pure/production?style=flat&logo=vercel&label=vercel)](https://astro-pure.js.org/)
-[![NPM Version](https://img.shields.io/npm/v/astro-pure?logo=npm&style=flat)](https://www.npmjs.com/package/astro-pure)
-[![GitHub Release](https://img.shields.io/github/v/release/cworld1/astro-theme-pure?include_prereleases&style=flat&label=template)](https://github.com/cworld1/astro-theme-pure/releases)
-[![GitHub License](https://img.shields.io/github/license/cworld1/astro-theme-pure?style=flat)](https://github.com/cworld1/astro-theme-pure/blob/main/LICENSE)
+## 当前内容
 
-![image](./.github/assets/header.webp)
-![image](./.github/assets/body.webp)
+已配置个人名称、头像、站点介绍、导航和社交入口。项目包含 Markdown/MDX 内容、RSS、主题组件及静态构建配置。原主题演示图片和性能成绩不代表本站实测结果。
 
-> [!NOTE]
-> Known issues: Header & customize options is still under development (template exposed still).
+## 本地运行
 
-## Introduction
+仓库保留 `bun.lock`，以下使用 Bun 管理依赖；运行前需有兼容当前 Astro 版本的 Node.js 环境。
 
-Checkout [Demo Site →](https://astro-pure.js.org/)
-
-### :fire: Features
-
-- [x] :rocket: Fast & high performance
-- [x] :star: Simple & clean design
-- [x] :iphone: Responsive design
-- [x] :mag: Full-site search built with [pagefind](https://pagefind.app/)
-- [x] :world_map: Sitemap & RSS feed
-- [x] :spider_web: SEO-friendly
-- [x] :book: TOC (table of contents)
-- [x] :framed_picture: Dynamic open graph generation for posts
-- [x] :framed_picture: Mediumzoom lightbox for images
-
-### :package: Components
-
-Theme includes a lot of components, which can not only be used in the theme, but also in other astro projects.
-
-> For other astro projects, UnoCSS is required. See [Package README](https://github.com/cworld1/astro-theme-pure/blob/main/packages/pure/README.md#use-with-common-astro-project) for more details.
-
-- Basic components: `Aside`, `Tabs`, `Timeline`, `Steps`, `Spoiler`...
-- Advanced components: `GithubCard`, `LinkPreview`, `Quote`, `QRCode`...
-
-### :white_check_mark: Lighthouse score
-
-[![lighthouse-score](./.github/assets/lighthouse-score.png)](https://pagespeed.web.dev/analysis/https-cworld-top/o229zrt5o4?form_factor=mobile&hl=en)
-
-## Documentation
-
-[Docs](https://astro-pure.js.org/docs) | [Showcase](https://github.com/cworld1/astro-theme-pure/issues/10)
-
-## Package
-
-See [astro-theme-pure](https://www.npmjs.com/package/astro-pure) on npm.
-
-## Local development
-
-Environment requirements:
-
-- [Nodejs](https://nodejs.org/): 18.0.0+
-
-Clone the repository:
-
-```shell
-git clone https://github.com/cworld1/astro-theme-pure.git
-cd astro-theme-pure
-```
-
-Useful commands:
-
-```shell
-# Install dependencies
+```bash
+git clone https://github.com/Linqiyu-0921/LaneQiyu.git
+cd LaneQiyu
 bun install
-# Start the dev server
-bun dev
-# Build the project
-bun run build
-# Preview (after the build)
-bun preview
-# Create a new post
-bun pure new
+bun run dev
 ```
 
-## Contributions
+打开终端给出的本地地址。检查与构建：
 
-To spend more time coding and less time fiddling with whitespace, this project uses code conventions and styles to encourage consistency. Code with a consistent style is easier (and less error-prone!) to review, maintain, and understand.
+```bash
+bun run check
+bun run build
+bun run preview
+```
 
-## Thanks
+`lint` 与 `format` 脚本会修改文件，审阅已有工作区改动后再使用。
 
-- [Astro Cactus](https://github.com/chrismwilliams/astro-theme-cactus)
-- [Astro Resume](https://github.com/srleom/astro-theme-resume)
-- [Starlight](https://github.com/withastro/starlight)
+## 目录导航
 
-Other third party references are on [Docs#Contributions](https://astro-pure.js.org/docs/advanced/about). Appreciate for all open source libraries.
+| 路径 | 内容 |
+| --- | --- |
+| [src/site.config.ts](src/site.config.ts) | 个人资料、导航、主题与集成配置 |
+| [src/content/](src/content/) | 博客及写作内容 |
+| [src/pages/](src/pages/) | 页面和 RSS 等入口 |
+| [src/components/](src/components/) | 本站组件 |
+| [packages/pure/](packages/pure/) | 随仓库保留的主题组件源码 |
+| [public/](public/) | 图标、图片、重定向和静态文件 |
+| [astro.config.ts](astro.config.ts) | 站点地址与构建配置 |
 
-## License
+## 来源与维护
 
-This project is licensed under the Apache 2.0 License.
+主题来自 [cworld1/astro-theme-pure](https://github.com/cworld1/astro-theme-pure)，保留原项目的 [LICENSE](LICENSE) 与署名要求。个人文章、照片及其他素材的使用范围需分别核对，不能由主题代码许可推导。
 
-[![Star History Chart](https://api.star-history.com/svg?repos=cworld1/astro-theme-pure&type=Date)](https://star-history.com/#cworld1/astro-theme-pure&Date)
+本地存在尚未同步的首页、图标和站点配置修改。仅更新 README 不会将这些修改发布到线上。
