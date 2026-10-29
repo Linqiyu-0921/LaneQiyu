@@ -17,12 +17,14 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
 ---
 
-<PageLayout meta={{ title: 'Home' }} highlightColor='#659EB9'>
+<PageLayout meta={{ title: '首页' }} highlightColor='#659EB9'>
   <main class='flex w-full flex-col items-center'>
     <section class='animate mb-10 flex flex-col items-center gap-y-7' id='content-header'>
       <img
         src={config.logo.src}
         alt={config.logo.alt || 'Profile'}
+        width={336}
+        height={336}
         class='h-28 w-auto rounded-full border p-1'
         loading='eager'
         fetchpriority='high'
@@ -48,18 +50,18 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
     </section>
 
     <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
-      <Section title='About'>
+      <Section title='关于'>
         <p class='text-muted-foreground'>
           于尘世借一程风雨，于天地寻一处清欢。
         </p>
         <p class='text-muted-foreground italic'>
           "As long as you truly love something, it will shine."
         </p>
-        <Button title='More about me' class='w-fit self-end' href='/about' variant='ahead' />
+        <Button title='了解更多' class='w-fit self-end' href='/about' variant='ahead' />
       </Section>
       {
         allPostsByDate.length > 0 && (
-          <Section title='Posts'>
+          <Section title='文章'>
             <ul class='flex flex-col gap-y-1.5 sm:gap-y-2'>
               {allPostsByDate.map((p) => (
                 <li class='flex flex-col gap-x-2 sm:flex-row'>
@@ -67,7 +69,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
                 </li>
               ))}
             </ul>
-            <Button title='More posts' class='w-fit self-end' href='/blog' variant='ahead' />
+            <Button title='更多文章' class='w-fit self-end' href='/blog' variant='ahead' />
           </Section>
         )
       }
@@ -101,27 +103,33 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
       />
     </Section> */
       }
-      <Section title='Education'>
-        <Card as='a' heading='南京工业大学' subheading='地理空间信息工程' date='September 2023 - Present' href='#'>
-          <img class='absolute end-0 z-0 m-0 -my-3 h-full w-1/2 object-cover opacity-40' src='/images/nanjing-tech.svg' />
+      <Section title='教育经历'>
+        <Card heading='南京工业大学' subheading='地理空间信息工程' date='2023年9月 - 至今'>
+          <img class='absolute end-0 z-0 m-0 -my-3 hidden h-full w-1/2 object-cover opacity-40 sm:block' src='/images/nanjing-tech.svg' />
         </Card>
-        <Card as='a' heading='云南师大附中呈贡学校' subheading='高中' date='August 2020 - July 2023' href='#'>
-          <img class='absolute end-0 z-0 m-0 -my-3 h-full w-1/2 object-cover opacity-40' src='/images/ynsd-cg.png' />
+        <Card heading='云南师大附中呈贡学校' subheading='高中' date='2020年8月 - 2023年7月'>
+          <img class='absolute end-0 z-0 m-0 -my-3 hidden h-full w-1/2 object-cover opacity-40 sm:block' src='/images/ynsd-cg.webp' />
         </Card>
       </Section>
 
-      <Section title='Projects'>
+      <Section title='项目'>
         <div class='grid grid-cols-1 gap-3 sm:grid-cols-2'>
           <ProjectCard
+            href='/projects/personal-website'
+            heading='个人网站'
+            subheading='Astro · Cloudflare Pages'
+            imagePath='/src/assets/projects/1.avif'
+          />
+          <ProjectCard
             href='/projects'
-            heading='更多项目'
-            subheading='查看全部项目'
+            heading='全部项目'
+            subheading='查看项目列表'
             imagePath='/src/assets/projects/1.avif'
           />
         </div>
       </Section>
 
-      <Section title='Hobbies'>
+      <Section title='兴趣'>
         <SkillLayout title='兴趣爱好' skills={hobbies} />
       </Section>
     </div>

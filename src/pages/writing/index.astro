@@ -107,23 +107,26 @@ const articles: Article[] = [
 ]
 
 const headings = [
-  { depth: 2, slug: 'articles', text: 'Articles' }
+  { depth: 2, slug: 'articles', text: '文章' }
 ]
 ---
 
-<PageLayout title='Writing' {headings}>
+<PageLayout title='写作' {headings}>
   <p>
     「乘以零的万能删除」公众号文章合集。文字是时间的化石，每一段记录都是一次对生活的叩问。
   </p>
 
-  <h2 id='articles'>Articles</h2>
+  <h2 id='articles'>文章</h2>
 
   <div class='flex flex-col gap-y-3'>
-    {articles.map((article) => (
-      <a
-        class='group flex items-start gap-x-4 rounded-xl border p-4 transition-colors hover:border-primary/40 hover:bg-muted/50 sm:p-5'
-        href={article.url}
-        target='_blank'
+    {articles.map((article) => {
+      const href = article.url.includes('/s/example') ? undefined : article.url
+      const Wrapper = href ? 'a' : 'div'
+      return (
+      <Wrapper
+        class={`group flex items-start gap-x-4 rounded-xl border p-4 transition-colors sm:p-5 ${href ? 'hover:border-primary/40 hover:bg-muted/50' : ''}`}
+        href={href}
+        target={href ? '_blank' : undefined}
       >
         {article.hasImage ? (
           <div
@@ -144,12 +147,17 @@ const headings = [
             {article.excerpt}
           </div>
         </div>
-        <span class='mt-2 flex-shrink-0 text-muted-foreground transition-colors group-hover:text-primary'>
-          →
-        </span>
-      </a>
-    ))}
+        {href && (
+          <span class='mt-2 flex-shrink-0 text-muted-foreground transition-colors group-hover:text-primary'>
+            →
+          </span>
+        )}
+      </Wrapper>
+      )
+    })}
   </div>
+
+  <p class='mt-4 text-xs text-muted-foreground'>部分文章的原文链接仍在整理中。</p>
 
   <div class='mt-6'>
     <Button title='访问公众号' href='https://mp.weixin.qq.com' variant='ahead' target='_blank' />

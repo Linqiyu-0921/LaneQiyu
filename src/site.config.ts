@@ -1,4 +1,4 @@
-import type { CardListData, Config, IntegrationUserConfig, ThemeUserConfig } from 'astro-pure/types'
+import type { Config, IntegrationUserConfig, ThemeUserConfig } from 'astro-pure/types'
 
 export const theme: ThemeUserConfig = {
   // [Basic]
@@ -26,7 +26,7 @@ export const theme: ThemeUserConfig = {
   },
   /** Set a logo image to show in the homepage. */
   logo: {
-    src: '/favicon/chengyilin.png',
+    src: '/favicon/logo.webp',
     alt: 'Lane Qiyu'
   },
 
@@ -48,10 +48,10 @@ export const theme: ThemeUserConfig = {
   /** Configure the header of your site. */
   header: {
     menu: [
-      { title: 'Blog', link: '/blog' },
-      { title: 'Writing', link: '/writing' },
-      { title: 'Projects', link: '/projects' },
-      { title: 'About', link: '/about' }
+      { title: '博客', link: '/blog' },
+      { title: '写作', link: '/writing' },
+      { title: '项目', link: '/projects' },
+      { title: '关于', link: '/about' }
     ]
   },
 
@@ -97,8 +97,8 @@ export const integ: IntegrationUserConfig = {
     applyTip: [
       { name: 'Name', val: theme.title },
       { name: 'Desc', val: theme.description || 'Null' },
-      { name: 'Link', val: 'https://laneqiqu.pages.dev/' },
-      { name: 'Avatar', val: 'https://laneqiqu.pages.dev/favicon/favicon.ico' }
+      { name: 'Link', val: 'https://www.laneqiyu.cn/' },
+      { name: 'Avatar', val: 'https://www.laneqiyu.cn/favicon/favicon.ico' }
     ],
     // Cache avatars in `public/avatars/` to improve user experience.
     cacheAvatar: false
@@ -161,28 +161,6 @@ export const integ: IntegrationUserConfig = {
       imageUploader: false
     }
   }
-}
-
-export const terms: CardListData = {
-  title: 'Terms content',
-  list: [
-    {
-      title: 'Privacy Policy',
-      link: '/terms/privacy-policy'
-    },
-    {
-      title: 'Terms and Conditions',
-      link: '/terms/terms-and-conditions'
-    },
-    {
-      title: 'Copyright',
-      link: '/terms/copyright'
-    },
-    {
-      title: 'Disclaimer',
-      link: '/terms/disclaimer'
-    }
-  ]
 }
 
 const config = { ...theme, integ } as Config

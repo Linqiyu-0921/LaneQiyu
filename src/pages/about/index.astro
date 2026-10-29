@@ -5,16 +5,16 @@ import Substats from '@/components/about/Substats.astro'
 import ToolSection from '@/components/about/ToolSection.astro'
 
 const headings = [
-  { depth: 2, slug: 'education', text: 'Education' },
-  { depth: 2, slug: 'hobbies', text: 'Hobbies' },
-  { depth: 2, slug: 'tools', text: 'Tools' },
-  { depth: 2, slug: 'social-networks', text: 'Social Networks' },
-  { depth: 2, slug: 'timeline', text: 'Timeline' },
-  { depth: 2, slug: 'contact', text: 'Contact' }
+  { depth: 2, slug: 'education', text: '教育经历' },
+  { depth: 2, slug: 'hobbies', text: '兴趣爱好' },
+  { depth: 2, slug: 'tools', text: '常用工具' },
+  { depth: 2, slug: 'social-networks', text: '社交网络' },
+  { depth: 2, slug: 'timeline', text: '时间线' },
+  { depth: 2, slug: 'contact', text: '联系方式' }
 ]
 ---
 
-<PageLayout title='About' {headings} comment>
+<PageLayout title='关于' {headings}>
   <p>地理空间信息工程 / 产品经理 / 文学创作者</p>
   <p>
     于尘世借一程风雨，于天地寻一处清欢。
@@ -27,14 +27,14 @@ const headings = [
   </p>
 
   {/* education */}
-  <h2 id='education'>Education</h2>
+  <h2 id='education'>教育经历</h2>
   <ul>
-    <li>南京工业大学 — 地理空间信息工程（September 2023 - Present）</li>
+    <li>南京工业大学 — 地理空间信息工程（2023年9月 - 至今）</li>
     <li>云南师大附中呈贡学校（2020 - 2023）</li>
   </ul>
 
   {/* general-talk */}
-  <h2 id='hobbies'>Hobbies</h2>
+  <h2 id='hobbies'>兴趣爱好</h2>
   <ul>
     <li>文学创作 — 小说、散文、日记</li>
     <li>自媒体 / 公众号运营</li>
@@ -43,33 +43,33 @@ const headings = [
   </ul>
 
   {/* tools */}
-  <h2 id='tools'>Tools</h2>
-  <p>Current support tools as follow:</p>
+  <h2 id='tools'>常用工具</h2>
+  <p>目前常用的工具：</p>
   <ToolSection
     class='mb-5'
-    title='Design'
+    title='设计'
     tools={[
       {
         name: 'Photoshop',
-        description: 'Picture Editing',
+        description: '图像处理',
         href: 'https://www.adobe.com/products/photoshop',
         icon: import('@/assets/tools/photoshop.svg?raw')
       },
       {
         name: 'Illustrator',
-        description: 'Vector Drawing',
+        description: '矢量绘图',
         href: 'https://www.adobe.com/products/illustrator',
         icon: import('@/assets/tools/illustrator.svg?raw')
       },
       {
         name: 'After Effects',
-        description: 'Motion Graphics',
+        description: '动效制作',
         href: 'https://www.adobe.com/products/aftereffects',
         icon: import('@/assets/tools/aftereffects.svg?raw')
       },
       {
         name: 'Premiere Pro',
-        description: 'Video Editing',
+        description: '视频剪辑',
         href: 'https://www.adobe.com/products/premiere',
         icon: import('@/assets/tools/premiere.svg?raw')
       }
@@ -77,29 +77,29 @@ const headings = [
   />
   <ToolSection
     class='mb-5'
-    title='Productivity'
+    title='效率'
     tools={[
       {
         name: 'Chrome',
-        description: 'Browser',
+        description: '浏览器',
         href: 'https://www.google.com/chrome/',
         icon: import('@/assets/tools/chrome.svg?raw')
       },
       {
         name: 'Firefox',
-        description: 'Browser',
+        description: '浏览器',
         href: 'https://www.mozilla.org/en-US/firefox',
         icon: import('@/assets/tools/firefox.svg?raw')
       },
       {
         name: 'Notion',
-        description: 'Note Taking',
+        description: '笔记',
         href: 'https://www.notion.so/',
         icon: import('@/assets/tools/notion.svg?raw')
       },
       {
         name: 'Typora',
-        description: 'Markdown Editor',
+        description: 'Markdown 编辑器',
         href: 'https://typora.io/',
         icon: import('@/assets/tools/typora.svg?raw')
       }
@@ -107,23 +107,23 @@ const headings = [
   />
   <ToolSection
     class='mb-5'
-    title='Development'
+    title='开发'
     tools={[
       {
         name: 'VS Code',
-        description: 'IDE',
+        description: '编辑器 / IDE',
         href: 'https://code.visualstudio.com/',
         icon: import('@/assets/tools/vscode.svg?raw')
       },
       {
         name: 'Neovim',
-        description: 'IDE',
+        description: '编辑器 / IDE',
         href: 'https://neovim.io/',
         icon: import('@/assets/tools/neovim.svg?raw')
       },
       {
         name: 'Sublime Text',
-        description: 'IDE',
+        description: '编辑器 / IDE',
         href: 'https://www.sublimetext.com/',
         icon: import('@/assets/tools/sublime.svg?raw')
       }
@@ -131,17 +131,17 @@ const headings = [
   />
   <ToolSection
     class='mb-5'
-    title='Environment'
+    title='环境'
     tools={[
       {
         name: 'Arch Linux',
-        description: 'Linux Distribution',
+        description: 'Linux 发行版',
         href: 'https://archlinux.org/',
         icon: import('@/assets/tools/archlinux.svg?raw')
       },
       {
         name: 'Ubuntu 24.04 LTS',
-        description: 'Linux Distribution',
+        description: 'Linux 发行版',
         href: 'https://ubuntu.com/',
         icon: import('@/assets/tools/ubuntu.svg?raw')
       },
@@ -161,7 +161,7 @@ const headings = [
   />
 
   {/* social-networks */}
-  <h2 id='social-networks'>Social Networks</h2>
+  <h2 id='social-networks'>社交网络</h2>
   <p>
     可以通过以下方式找到我。
   </p>
@@ -178,7 +178,7 @@ const headings = [
   />
 
   {/* timeline */}
-  <h2 id='timeline'>Timeline</h2>
+  <h2 id='timeline'>时间线</h2>
   <p>一些重要的时刻。</p>
   <Timeline
     events={[
@@ -202,13 +202,9 @@ const headings = [
   />
 
   {/* contact */}
-  <h2 id='contact'>Contact</h2>
+  <h2 id='contact'>联系方式</h2>
   <p>可以通过以下方式找到我。</p>
-  <div class='not-prose mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2'>
-    <div class='flex flex-col items-center gap-3 rounded-xl border p-4'>
-      <img src='/wechat-qrcode.jpg' alt='微信二维码' class='h-40 w-40 rounded-lg object-cover' />
-      <span class='text-sm text-muted-foreground'>微信扫码添加</span>
-    </div>
+  <div class='not-prose mt-4 grid grid-cols-1 gap-4'>
     <div class='flex flex-col gap-3'>
       <a
         class='flex items-center gap-3 rounded-xl border p-4 transition-colors hover:border-primary/40 hover:bg-muted/50'
@@ -224,7 +220,7 @@ const headings = [
       </a>
       <a
         class='flex items-center gap-3 rounded-xl border p-4 transition-colors hover:border-primary/40 hover:bg-muted/50'
-        href='mailto:lane@example.com'
+        href='mailto:linqiyu0921@163.com'
       >
         <div class='flex h-10 w-10 items-center justify-center rounded-lg bg-muted text-lg'>📧</div>
         <div class='flex-1'>
@@ -235,7 +231,7 @@ const headings = [
       </a>
       <a
         class='flex items-center gap-3 rounded-xl border p-4 transition-colors hover:border-primary/40 hover:bg-muted/50'
-        href='#'
+        href='/writing'
       >
         <div class='flex h-10 w-10 items-center justify-center rounded-lg bg-muted text-lg'>📖</div>
         <div class='flex-1'>
