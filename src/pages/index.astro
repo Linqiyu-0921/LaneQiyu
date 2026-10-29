@@ -2,6 +2,7 @@
 import { Quote } from 'astro-pure/advanced'
 import { PostPreview } from 'astro-pure/components/pages'
 import { getBlogCollection, sortMDByDate } from 'astro-pure/server'
+import { getCollection } from 'astro:content'
 import { Button, Card, Icon, Label } from 'astro-pure/user'
 import PageLayout from '@/layouts/BaseLayout.astro'
 import ProjectCard from '@/components/home/ProjectCard.astro'
@@ -12,6 +13,14 @@ import config from '@/site-config'
 const hobbies = ['文学创作', '自媒体运营', '媒体设计', '地理/城市/地铁视频']
 
 const MAX_POSTS = 10
+const projectImages = import.meta.glob('/src/assets/projects/*.{webp,avif}')
+const projects = (await getCollection('projects'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999))
+const cardImage = (id: string) => {
+  const webp = `/src/assets/projects/${id}.webp`
+  return projectImages[webp] ? webp : '/src/assets/projects/1.avif'
+}
 const allPosts = await getBlogCollection()
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
@@ -114,12 +123,14 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
       <Section title='项目' i18n='home.projects'>
         <div class='grid grid-cols-1 gap-3 sm:grid-cols-2'>
-          <ProjectCard
-            href='/projects/personal-website'
-            heading='个人网站'
-            subheading='Astro · Cloudflare Pages'
-            imagePath='/src/assets/projects/1.avif'
-          />
+          {projects.map((p) => (
+            <ProjectCard
+              href={`/projects/${p.id}`}
+              heading={p.data.title}
+              subheading={p.data.description}
+              imagePath={cardImage(p.id)}
+            />
+          ))}
 
         </div>
       </Section>

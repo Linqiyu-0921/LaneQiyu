@@ -1,0 +1,32 @@
+---
+title: '此年 · ChronoChina'
+description: '中国历史时序图谱：以年份为轴，对齐同期政权、年号与史事'
+publishDate: 2026-10-29
+tags: ['history', 'visualization', 'react', 'vite']
+links:
+  - type: site
+    href: 'https://cinian.laneqiyu.cn/'
+  - type: github
+    href: 'https://github.com/Linqiyu-0921/ChronoChina'
+order: 1
+---
+
+## 项目简介
+
+**此年，山河同阅。** 它是一个中国历史时序图谱，把「同一年」里并立的政权、各自行用的年号与当年史事摆在一行里，给读史一把对齐的时间尺子。
+
+与展示型年表不同，这里的每条纪年都可定位、可核对、可追溯来源：异说标虚线，约数标徽记，没收录的年份也照实写明——空白不等于无史。全部数据为静态 JSON，无后端、无数据库，打开即用。
+
+## 技术栈
+
+- **Framework**: React 18 + Vite
+- **Scales**: d3-scale
+- **Data**: 静态 JSON，构建期校验脚本
+- **Hosting**: Cloudflare Pages
+
+## 功能
+
+- 阅年：一年一页的历书版式，年份为主、干支为辅，同期政权按开国先后编号
+- 并世：纵向时间画布，年号按真实起讫画期间条
+- 搜索：`Ctrl / ⌘ + K` 唤起，留空即朝代目录
+- 每条纪年可回溯依据，异说与约数有明确标记
