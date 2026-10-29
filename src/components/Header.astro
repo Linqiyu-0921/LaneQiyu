@@ -106,9 +106,9 @@ import LanguageSwitch from '@/components/LanguageSwitch.astro'
           zh: { dark: '深色', light: '浅色', system: '跟随系统' }
         }
         const names = themeNames[lang] ?? themeNames.zh
-        const label = names[newTheme] ?? newTheme
+        const label = (newTheme && names[newTheme]) ?? newTheme
         const message =
-          lang === 'en' ? `Set theme to ${label}` : lang === 'zh-Hant' ? `主題已切換為${label}` : `主题已切换为${label}`
+          lang === 'en' ? `Set theme to ${label ?? ''}` : lang === 'zh-Hant' ? `主題已切換為${label}` : `主题已切换为${label}`
         showToast({ message })
       })
 
