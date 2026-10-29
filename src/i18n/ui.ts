@@ -57,6 +57,10 @@ export const dictionaries: Record<Lang, Record<string, string>> = {
     'projects.title': '项目',
     'projects.github': 'GitHub 动态：',
     'projects.list': '项目',
+    'link.site': '网站',
+    'link.github': 'GitHub',
+    'link.doc': '文档',
+    'link.release': '发布',
 
     'search.title': '搜索',
     'search.hint': '输入关键词，搜索站内文章。',
@@ -124,6 +128,10 @@ export const dictionaries: Record<Lang, Record<string, string>> = {
     'projects.title': '專案',
     'projects.github': 'GitHub 動態：',
     'projects.list': '專案',
+    'link.site': '網站',
+    'link.github': 'GitHub',
+    'link.doc': '文件',
+    'link.release': '發佈',
 
     'search.title': '搜尋',
     'search.hint': '輸入關鍵詞，搜尋站內文章。',
@@ -191,6 +199,10 @@ export const dictionaries: Record<Lang, Record<string, string>> = {
     'projects.title': 'Projects',
     'projects.github': 'GitHub activity:',
     'projects.list': 'Projects',
+    'link.site': 'Site',
+    'link.github': 'GitHub',
+    'link.doc': 'Docs',
+    'link.release': 'Release',
 
     'search.title': 'Search',
     'search.hint': 'Enter a keyword to search posts on this site.',
