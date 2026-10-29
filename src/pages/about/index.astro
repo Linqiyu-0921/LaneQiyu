@@ -27,14 +27,14 @@ const headings = [
   </p>
 
   {/* education */}
-  <h2 id='education'>教育经历</h2>
+  <h2 id='education' data-i18n='about.education'>教育经历</h2>
   <ul>
     <li>南京工业大学 — 地理空间信息工程（2023年9月 - 至今）</li>
     <li>云南师大附中呈贡学校（2020 - 2023）</li>
   </ul>
 
   {/* general-talk */}
-  <h2 id='hobbies'>兴趣爱好</h2>
+  <h2 id='hobbies' data-i18n='about.hobbies'>兴趣爱好</h2>
   <ul>
     <li>文学创作 — 小说、散文、日记</li>
     <li>自媒体 / 公众号运营</li>
@@ -43,33 +43,38 @@ const headings = [
   </ul>
 
   {/* tools */}
-  <h2 id='tools'>常用工具</h2>
-  <p>目前常用的工具：</p>
+  <h2 id='tools' data-i18n='about.tools'>常用工具</h2>
+  <p data-i18n='about.toolsIntro'>目前常用的工具：</p>
   <ToolSection
     class='mb-5'
     title='设计'
+    titleI18n='tools.design'
     tools={[
       {
         name: 'Photoshop',
         description: '图像处理',
+        descriptionI18n: 'tool.image',
         href: 'https://www.adobe.com/products/photoshop',
         icon: import('@/assets/tools/photoshop.svg?raw')
       },
       {
         name: 'Illustrator',
         description: '矢量绘图',
+        descriptionI18n: 'tool.vector',
         href: 'https://www.adobe.com/products/illustrator',
         icon: import('@/assets/tools/illustrator.svg?raw')
       },
       {
         name: 'After Effects',
         description: '动效制作',
+        descriptionI18n: 'tool.motion',
         href: 'https://www.adobe.com/products/aftereffects',
         icon: import('@/assets/tools/aftereffects.svg?raw')
       },
       {
         name: 'Premiere Pro',
         description: '视频剪辑',
+        descriptionI18n: 'tool.video',
         href: 'https://www.adobe.com/products/premiere',
         icon: import('@/assets/tools/premiere.svg?raw')
       }
@@ -78,28 +83,33 @@ const headings = [
   <ToolSection
     class='mb-5'
     title='效率'
+    titleI18n='tools.efficiency'
     tools={[
       {
         name: 'Chrome',
         description: '浏览器',
+        descriptionI18n: 'tool.browser',
         href: 'https://www.google.com/chrome/',
         icon: import('@/assets/tools/chrome.svg?raw')
       },
       {
         name: 'Firefox',
         description: '浏览器',
+        descriptionI18n: 'tool.browser',
         href: 'https://www.mozilla.org/en-US/firefox',
         icon: import('@/assets/tools/firefox.svg?raw')
       },
       {
         name: 'Notion',
         description: '笔记',
+        descriptionI18n: 'tool.note',
         href: 'https://www.notion.so/',
         icon: import('@/assets/tools/notion.svg?raw')
       },
       {
         name: 'Typora',
         description: 'Markdown 编辑器',
+        descriptionI18n: 'tool.markdown',
         href: 'https://typora.io/',
         icon: import('@/assets/tools/typora.svg?raw')
       }
@@ -108,22 +118,26 @@ const headings = [
   <ToolSection
     class='mb-5'
     title='开发'
+    titleI18n='tools.development'
     tools={[
       {
         name: 'VS Code',
         description: '编辑器 / IDE',
+        descriptionI18n: 'tool.ide',
         href: 'https://code.visualstudio.com/',
         icon: import('@/assets/tools/vscode.svg?raw')
       },
       {
         name: 'Neovim',
         description: '编辑器 / IDE',
+        descriptionI18n: 'tool.ide',
         href: 'https://neovim.io/',
         icon: import('@/assets/tools/neovim.svg?raw')
       },
       {
         name: 'Sublime Text',
         description: '编辑器 / IDE',
+        descriptionI18n: 'tool.ide',
         href: 'https://www.sublimetext.com/',
         icon: import('@/assets/tools/sublime.svg?raw')
       }
@@ -132,16 +146,19 @@ const headings = [
   <ToolSection
     class='mb-5'
     title='环境'
+    titleI18n='tools.environment'
     tools={[
       {
         name: 'Arch Linux',
         description: 'Linux 发行版',
+        descriptionI18n: 'tool.linux',
         href: 'https://archlinux.org/',
         icon: import('@/assets/tools/archlinux.svg?raw')
       },
       {
         name: 'Ubuntu 24.04 LTS',
         description: 'Linux 发行版',
+        descriptionI18n: 'tool.linux',
         href: 'https://ubuntu.com/',
         icon: import('@/assets/tools/ubuntu.svg?raw')
       },
@@ -161,7 +178,7 @@ const headings = [
   />
 
   {/* social-networks */}
-  <h2 id='social-networks'>社交网络</h2>
+  <h2 id='social-networks' data-i18n='about.social'>社交网络</h2>
   <p>
     可以通过以下方式找到我。
   </p>
@@ -178,7 +195,7 @@ const headings = [
   />
 
   {/* timeline */}
-  <h2 id='timeline'>时间线</h2>
+  <h2 id='timeline' data-i18n='about.timeline'>时间线</h2>
   <p>一些重要的时刻。</p>
   <Timeline
     events={[
@@ -202,7 +219,7 @@ const headings = [
   />
 
   {/* contact */}
-  <h2 id='contact'>联系方式</h2>
+  <h2 id='contact' data-i18n='about.contact'>联系方式</h2>
   <p>可以通过以下方式找到我。</p>
   <div class='not-prose mt-4 grid grid-cols-1 gap-4'>
     <div class='flex flex-col gap-3'>

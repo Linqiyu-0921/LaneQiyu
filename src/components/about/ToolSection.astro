@@ -8,16 +8,18 @@ import { cn } from 'astro-pure/utils'
 interface Props {
   class?: string
   title: string
+  titleI18n?: string
   tools: {
     name: string
     description: string
+    descriptionI18n?: string
     href: string
     icon: Promise<typeof import('*.svg?raw')> | ImageMetadata
     darkIcon?: Promise<typeof import('*.svg?raw')> | ImageMetadata
   }[]
 }
 
-const { class: className, title, tools, ...props } = Astro.props
+const { class: className, title, titleI18n, tools, ...props } = Astro.props
 
 function isImageMetadata(obj: unknown): obj is ImageMetadata {
   return typeof obj === 'object' && obj !== null && 'src' in obj
@@ -28,7 +30,7 @@ function isImageMetadata(obj: unknown): obj is ImageMetadata {
   class={cn('not-prose flex flex-col rounded-xl border py-3 px-3 gap-y-3 sm:gap-y-4', className)}
   {...props}
 >
-  <div class='m-0 px-2 text-lg font-medium'>{title}</div>
+  <div class='m-0 px-2 text-lg font-medium' data-i18n={titleI18n}>{title}</div>
   <div class='grid grid-cols-1 gap-x-2 gap-y-2 sm:grid-cols-2'>
     {
       tools.map((tool) => (
@@ -80,7 +82,7 @@ function isImageMetadata(obj: unknown): obj is ImageMetadata {
             )}
             <div class='z-20 flex flex-col'>
               <div class='font-medium text-foreground'>{tool.name}</div>
-              <div class='font-normal'>{tool.description}</div>
+              <div class='font-normal' data-i18n={tool.descriptionI18n}>{tool.description}</div>
             </div>
           </div>
         </a>

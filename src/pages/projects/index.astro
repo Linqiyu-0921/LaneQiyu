@@ -14,7 +14,7 @@ const headings = [
 ---
 
 <PageLayout title='项目' {headings}>
-  <p>GitHub 动态：</p>
+  <p data-i18n='projects.github'>GitHub 动态：</p>
   <p>
     <Image
       src='https://ghchart.rshah.org/659eb9/Linqiyu-0921'
@@ -24,7 +24,7 @@ const headings = [
     />
   </p>
 
-  <h2 id='programs'>项目</h2>
+  <h2 id='programs' data-i18n='projects.list'>项目</h2>
   <ProjectSection
     projects={sortedProjects.map((p) => ({
       name: p.data.title,
