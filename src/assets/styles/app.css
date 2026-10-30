@@ -50,3 +50,14 @@ a {
 ::selection {
   background: hsl(var(--primary) / 0.16);
 }
+
+/* 无侧边目录的页面隐藏移动端目录按钮，避免浮在正文上 */
+body:not(:has(toc-heading)) #sidebar-btn {
+  display: none;
+}
+
+/* 页脚社交图标扩大触控区域 */
+footer a[rel='me'] {
+  padding: 0.5rem;
+  margin: -0.5rem;
+}
