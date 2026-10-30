@@ -8,6 +8,7 @@ import PageLayout from '@/layouts/BaseLayout.astro'
 import ProjectCard from '@/components/home/ProjectCard.astro'
 import Section from '@/components/home/Section.astro'
 import SkillLayout from '@/components/home/SkillLayout.astro'
+import DuckPlayground from '@/components/home/DuckPlayground.astro'
 import config from '@/site-config'
 
 const hobbies = ['文学创作', '自媒体运营', '媒体设计', '地理/城市/地铁视频']
@@ -17,6 +18,8 @@ const projectImages = import.meta.glob('/src/assets/projects/*.{webp,avif}')
 const projects = (await getCollection('projects'))
   .filter((p) => !p.data.draft)
   .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999))
+const projectHref = (p: { data: { links: { type: string; href: string }[] }; id: string }) =>
+  p.data.links.find((l) => l.type === 'site')?.href ?? p.data.links[0]?.href ?? `/projects/${p.id}`
 const cardImage = (id: string) => {
   const webp = `/src/assets/projects/${id}.webp`
   return projectImages[webp] ? webp : '/src/assets/projects/1.avif'
@@ -125,7 +128,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
         <div class='grid grid-cols-1 gap-3 sm:grid-cols-2'>
           {projects.map((p) => (
             <ProjectCard
-              href={`/projects/${p.id}`}
+              href={projectHref(p)}
               heading={p.data.title}
               subheading={p.data.description}
               imagePath={cardImage(p.id)}
@@ -133,6 +136,10 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
           ))}
 
         </div>
+      </Section>
+
+      <Section title='游乐场' i18n='home.playground'>
+        <DuckPlayground />
       </Section>
 
       <Section title='兴趣' i18n='home.hobbies'>

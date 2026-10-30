@@ -16,7 +16,7 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths
 
 const { project } = Astro.props
-const { Content, headings } = await render(project)
+const { Content } = await render(project)
 
 const projectIconSet: Record<string, IconsType> = {
   github: 'github-circle',
@@ -26,7 +26,7 @@ const projectIconSet: Record<string, IconsType> = {
 }
 ---
 
-<PageLayout title={project.data.title} {headings}>
+<PageLayout title={project.data.title}>
   <p class='text-muted-foreground'>{project.data.description}</p>
 
   {project.data.heroImage && (
