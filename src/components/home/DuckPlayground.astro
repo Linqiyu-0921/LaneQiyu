@@ -1,20 +1,12 @@
-<duck-playground>
-  <div class='playground-heading'>
-    <div>
-      <h3>QQQ <span data-i18n='home.playground'>Playground</span></h3>
-      <p data-i18n='duck.description'>Stay a little. Make a few ripples.</p>
-    </div>
-    <button type='button' aria-controls='duck-water' aria-pressed='false' disabled>
-      <span data-play data-i18n='duck.play'>Start playing</span>
-      <span data-pause data-i18n='duck.pause' hidden>Pause</span>
-    </button>
-  </div>
+<duck-playground data-pagefind-ignore>
   <div class='water-preview' id='duck-water'>
     <img class='water-cover' src='/playground/qqq/assets/water.jpg' alt='' loading='lazy' />
     <img class='duck-cover' src='/playground/qqq/assets/duck.png' alt='' loading='lazy' />
   </div>
-  <p class='playground-hint' data-i18n='duck.hint'>Move your pointer or finger to guide the duck · Tap for ripples · Arrow keys to move, Space to splash</p>
-  <noscript>Enable JavaScript to play with the duck.</noscript>
+  <button type='button' aria-label='播放或暂停水面动画' aria-controls='duck-water' aria-pressed='false' disabled>
+    <span data-play><svg viewBox='0 0 24 24' width='20' height='20' aria-hidden='true'><path d='M8 5v14l11-7z' fill='currentColor' /></svg></span>
+    <span data-pause hidden><svg viewBox='0 0 24 24' width='20' height='20' aria-hidden='true'><path d='M7 5h3v14H7zm7 0h3v14h-3z' fill='currentColor' /></svg></span>
+  </button>
 </duck-playground>
 
 <script>
@@ -28,6 +20,7 @@
     connectedCallback() {
       this.button = this.querySelector('button')!
       this.button.disabled = false
+      this.playing = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
       this.button.addEventListener('click', this.toggle)
       window.addEventListener('message', this.onMessage)
       document.addEventListener('visibilitychange', this.sync)
@@ -40,15 +33,6 @@
 
     toggle = () => {
       this.playing = !this.playing
-      if (this.playing && !this.frame) {
-        this.frame = document.createElement('iframe')
-        this.frame.title = 'QQQ · Interactive water playground'
-        this.frame.src = '/playground/qqq/index.html'
-        this.querySelector('.water-preview')!.append(this.frame)
-      }
-      this.button.setAttribute('aria-pressed', String(this.playing))
-      this.querySelector<HTMLElement>('[data-play]')!.hidden = this.playing
-      this.querySelector<HTMLElement>('[data-pause]')!.hidden = !this.playing
       this.sync()
     }
 
@@ -58,8 +42,17 @@
     }
 
     sync = () => {
+      if (this.playing && this.visible && !this.frame) {
+        this.frame = document.createElement('iframe')
+        this.frame.title = 'QQQ · Interactive water playground'
+        this.frame.src = '/playground/qqq/index.html'
+        this.querySelector('.water-preview')!.append(this.frame)
+      }
       const active = this.playing && this.visible && !document.hidden
       this.dataset.active = String(active)
+      this.button.setAttribute('aria-pressed', String(this.playing))
+      this.querySelector<HTMLElement>('[data-play]')!.hidden = this.playing
+      this.querySelector<HTMLElement>('[data-pause]')!.hidden = !this.playing
       if (this.frame) this.frame.tabIndex = active ? 0 : -1
       this.frame?.contentWindow?.postMessage({ type: 'qqq-playback', playing: active }, location.origin)
     }
@@ -77,21 +70,15 @@
 </script>
 
 <style>
-  duck-playground { display: block; min-width: 0; }
-  .playground-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
-  h3 { margin: 0; font-size: 1rem; font-weight: 600; }
-  .playground-heading p, .playground-hint { color: hsl(var(--muted-foreground)); font-size: .8rem; line-height: 1.7; }
-  .playground-heading p { margin: .3rem 0 0; }
-  button { flex-shrink: 0; min-height: 44px; padding: .55rem .9rem; border: 1px solid hsl(var(--border)); border-radius: .6rem; font-size: .8rem; background: hsl(var(--background)); cursor: pointer; }
-  button:hover { background: hsl(var(--muted)); }
-  button:focus-visible { outline: 2px solid #659eb9; outline-offset: 3px; }
-  button:disabled { opacity: .5; cursor: default; }
+  duck-playground { display: block; position: relative; width: 100%; min-width: 0; margin-top: 2rem; }
+  button { position: absolute; right: max(1rem, env(safe-area-inset-right)); bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 1; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #ffffff80; border-radius: 50%; color: white; background: #004a8d70; cursor: pointer; }
+  button:hover { background: #004a8db0; }
+  button:focus-visible { outline: 3px solid white; outline-offset: 3px; }
   [hidden] { display: none !important; }
-  .water-preview { position: relative; overflow: hidden; aspect-ratio: 2.62; border-radius: .85rem; background: #087bfa; }
+  .water-preview { position: relative; overflow: hidden; border-radius: 1rem; height: clamp(440px, 75svh, 900px); background: #087bfa; }
   .water-cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; }
   .duck-cover { position: absolute; left: 61%; top: 42%; width: 9%; transform: translate(-50%, -50%) rotate(-.8rad); filter: drop-shadow(3px 7px 4px #004a8d48); }
   .water-preview :global(iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   duck-playground[data-active='false'] :global(iframe) { pointer-events: none; }
-  .playground-hint { margin: .7rem 0 0; }
-  @media (max-width: 600px) { .water-preview { aspect-ratio: 1.15; } .duck-cover { width: 17%; } }
+  @media (max-width: 600px) { .water-preview { height: 70svh; min-height: 360px; } .duck-cover { width: 17%; } }
 </style>

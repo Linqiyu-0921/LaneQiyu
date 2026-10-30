@@ -138,14 +138,15 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
         </div>
       </Section>
 
-      <Section title='Playground' i18n='home.playground'>
-        <DuckPlayground />
-      </Section>
-
       <Section title='Interests' i18n='home.hobbies'>
         <SkillLayout title='Interests' skills={hobbies} />
       </Section>
     </div>
-    <Quote class='mt-12' />
+    <DuckPlayground />
+    <Quote class='mt-6' />
   </main>
 </PageLayout>
+
+<style>
+  :global(body:has(duck-playground) footer) { margin-top: 2rem; }
+</style>

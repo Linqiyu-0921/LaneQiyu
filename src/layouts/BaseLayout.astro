@@ -28,7 +28,7 @@ const {
     <ThemeProvider />
   </head>
 
-  <body class='flex justify-center bg-background text-foreground' {...props}>
+  <body class='flex flex-col items-center bg-background text-foreground' {...props}>
     {
       highlightColor && (
         <div
@@ -46,8 +46,10 @@ const {
       <div class='flex-1 w-full'>
         <slot />
       </div>
+      <slot name='bottom' />
       <Footer />
     </div>
+
 
     {/* Set highlight color */}
     <style define:vars={{ highlightColor }}>
