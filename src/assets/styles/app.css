@@ -61,3 +61,19 @@ footer a[rel='me'] {
   padding: 0.5rem;
   margin: -0.5rem;
 }
+
+/* 搜索框：Pagefind 默认把占位符压到 20% 不透明度，暗色下几乎不可见 */
+#site-search .pagefind-ui__search-input::placeholder {
+  color: hsl(var(--muted-foreground));
+  opacity: 1;
+}
+
+/* 暗色下输入框描边需与背景拉开距离，才看得出输入区域 */
+html.dark #site-search {
+  --pagefind-ui-border: hsl(240 4% 42% / 1);
+}
+
+/* GitHub 热力图是白底外部图片，暗色下反相以融入背景 */
+html.dark .github-chart {
+  filter: invert(1) hue-rotate(180deg) saturate(0.8) brightness(0.92);
+}

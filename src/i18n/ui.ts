@@ -65,7 +65,7 @@ export const dictionaries: Record<Lang, Record<string, string>> = {
 
     'projects.title': 'Projects',
     'projects.github': 'GitHub activity:',
-    'projects.list': 'Projects',
+    'projects.list': 'Selected projects',
     'link.site': 'Site',
     'link.github': 'GitHub',
     'link.doc': 'Docs',
@@ -143,7 +143,7 @@ export const dictionaries: Record<Lang, Record<string, string>> = {
 
     'projects.title': '專案',
     'projects.github': 'GitHub 動態：',
-    'projects.list': '專案',
+    'projects.list': '精選專案',
     'link.site': '網站',
     'link.github': 'GitHub',
     'link.doc': '文件',

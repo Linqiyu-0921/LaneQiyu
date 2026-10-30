@@ -8,23 +8,21 @@ import ProjectSection from '@/components/projects/ProjectSection.astro'
 const projects = await getCollection('projects')
 const sortedProjects = projects.sort((a, b) => (a.data.order || 999) - (b.data.order || 999))
 
-const headings = [
-  { depth: 2, slug: 'programs', text: 'Projects' }
-]
 ---
 
-<PageLayout title='Projects' {headings}>
+<PageLayout title='Projects'>
   <p data-i18n='projects.github'>GitHub activity:</p>
   <p>
     <Image
       src='https://ghchart.rshah.org/659eb9/Linqiyu-0921'
+      class='github-chart'
       alt='github activities'
       inferSize
       loading='lazy'
     />
   </p>
 
-  <h2 id='programs' data-i18n='projects.list'>Projects</h2>
+  <h2 data-i18n='projects.list'>Selected projects</h2>
   <ProjectSection
     projects={sortedProjects.map((p) => ({
       name: p.data.title,
