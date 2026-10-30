@@ -23,7 +23,7 @@ const socialImage = heroImage?.src ?? config.socialCard
 ---
 
 <PageLayout meta={{ title, description, ogImage: socialImage }}>
-  <Button href={back ?? '/'} variant='back'><span data-i18n='common.back'>返回</span></Button>
+  <Button href={back ?? '/'} variant='back'><span data-i18n='common.back'>Back</span></Button>
   <main class='mt-6 items-start gap-x-10 md:flex lg:mt-10'>
     {
       !!headings.length && (

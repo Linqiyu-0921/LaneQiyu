@@ -102,13 +102,11 @@ import LanguageSwitch from '@/components/LanguageSwitch.astro'
         const lang = document.documentElement.lang
         const themeNames: Record<string, Record<string, string>> = {
           en: { dark: 'dark', light: 'light', system: 'system' },
-          'zh-Hant': { dark: '深色', light: '淺色', system: '跟隨系統' },
-          zh: { dark: '深色', light: '浅色', system: '跟随系统' }
+          'zh-Hant': { dark: '深色', light: '淺色', system: '跟隨系統' }
         }
-        const names = themeNames[lang] ?? themeNames.zh
+        const names = themeNames[lang] ?? themeNames.en
         const label = (newTheme && names[newTheme]) ?? newTheme
-        const message =
-          lang === 'en' ? `Set theme to ${label ?? ''}` : lang === 'zh-Hant' ? `主題已切換為${label}` : `主题已切换为${label}`
+        const message = lang === 'zh-Hant' ? `主題已切換為${label}` : `Set theme to ${label ?? ''}`
         showToast({ message })
       })
 

@@ -107,16 +107,16 @@ const articles: Article[] = [
 ]
 
 const headings = [
-  { depth: 2, slug: 'articles', text: '文章' }
+  { depth: 2, slug: 'articles', text: 'Articles' }
 ]
 ---
 
-<PageLayout title='写作' {headings}>
+<PageLayout title='Writing' {headings}>
   <p>
     「乘以零的万能删除」公众号文章合集。文字是时间的化石，每一段记录都是一次对生活的叩问。
   </p>
 
-  <h2 id='articles' data-i18n='writing.articles'>文章</h2>
+  <h2 id='articles' data-i18n='writing.articles'>Articles</h2>
 
   <div class='flex flex-col gap-y-3'>
     {articles.map((article) => {
@@ -157,9 +157,9 @@ const headings = [
     })}
   </div>
 
-  <p class='mt-4 text-xs text-muted-foreground' data-i18n='writing.note'>部分文章的原文链接仍在整理中。</p>
+  <p class='mt-4 text-xs text-muted-foreground' data-i18n='writing.note'>Some article links are still being compiled.</p>
 
   <div class='mt-6'>
-    <Button href='https://mp.weixin.qq.com' variant='ahead' target='_blank'><span data-i18n='writing.official'>访问公众号</span></Button>
+    <Button href='https://mp.weixin.qq.com' variant='ahead' target='_blank'><span data-i18n='writing.official'>Visit WeChat account</span></Button>
   </div>
 </PageLayout>

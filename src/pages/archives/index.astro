@@ -11,20 +11,20 @@ const allPostsByDate = sortMDByDate(allPosts)
 const allPostsByYear = groupCollectionsByYear(allPostsByDate)
 
 const meta = {
-  description: '按年份归档的全部文章',
-  title: '归档'
+  description: 'All posts archived by year',
+  title: 'Archives'
 }
 ---
 
 <PageLayout {meta}>
-  <Button href='/blog' variant='back'><span data-i18n='common.back'>返回</span></Button>
+  <Button href='/blog' variant='back'><span data-i18n='common.back'>Back</span></Button>
 
   <main class='mt-6 lg:mt-10'>
     <div id='content-header' class='animate'>
-      <h1 class='mb-6 text-3xl font-medium' data-i18n='archives.title'>归档</h1>
+      <h1 class='mb-6 text-3xl font-medium' data-i18n='archives.title'>Archives</h1>
     </div>
 
-    {allPosts.length === 0 && <p data-i18n='archives.empty'>还没有文章。</p>}
+    {allPosts.length === 0 && <p data-i18n='archives.empty'>No posts yet.</p>}
 
     <section id='content' class='animate' aria-label='Blog post list'>
       {

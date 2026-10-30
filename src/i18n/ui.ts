@@ -1,158 +1,8 @@
-export type Lang = 'zh' | 'zh-Hant' | 'en'
+export type Lang = 'en' | 'zh-Hant'
+
+export const defaultLang: Lang = 'en'
 
 export const dictionaries: Record<Lang, Record<string, string>> = {
-  zh: {
-    'nav.blog': '博客',
-    'nav.writing': '写作',
-    'nav.projects': '项目',
-    'nav.about': '关于',
-    'ui.search': '搜索',
-    'ui.theme': '切换主题',
-    'ui.menu': '菜单',
-
-    'home.title': '首页',
-    'home.about': '关于',
-    'home.posts': '文章',
-    'home.education': '教育经历',
-    'home.projects': '项目',
-    'home.hobbies': '兴趣',
-    'home.playground': '游乐场',
-    'duck.description': '停留一会儿，拨动一池涟漪。',
-    'duck.play': '开始互动',
-    'duck.pause': '暂停互动',
-    'duck.hint': '移动鼠标或手指引导小鸭 · 点击拨水 · 方向键移动，空格键制造涟漪',
-    'home.moreAbout': '了解更多',
-    'home.morePosts': '更多文章',
-
-    'about.title': '关于',
-    'about.education': '教育经历',
-    'about.hobbies': '兴趣爱好',
-    'about.tools': '常用工具',
-    'about.social': '社交网络',
-    'about.timeline': '时间线',
-    'about.contact': '联系方式',
-    'about.toolsIntro': '目前常用的工具：',
-    'tools.design': '设计',
-    'tools.efficiency': '效率',
-    'tools.development': '开发',
-    'tools.environment': '环境',
-    'tool.image': '图像处理',
-    'tool.vector': '矢量绘图',
-    'tool.motion': '动效制作',
-    'tool.video': '视频剪辑',
-    'tool.browser': '浏览器',
-    'tool.note': '笔记',
-    'tool.markdown': 'Markdown 编辑器',
-    'tool.ide': '编辑器 / IDE',
-    'tool.linux': 'Linux 发行版',
-
-    'common.back': '返回',
-
-    'blog.title': '博客',
-    'blog.empty': '还没有文章。',
-    'blog.viewYears': '按年份查看全部 →',
-    'blog.tags': '标签',
-    'blog.viewAll': '查看全部 →',
-
-    'writing.title': '写作',
-    'writing.articles': '文章',
-    'writing.note': '部分文章的原文链接仍在整理中。',
-    'writing.official': '访问公众号',
-
-    'projects.title': '项目',
-    'projects.github': 'GitHub 动态：',
-    'projects.list': '项目',
-    'link.site': '网站',
-    'link.github': 'GitHub',
-    'link.doc': '文档',
-    'link.release': '发布',
-
-    'search.title': '搜索',
-    'search.hint': '输入关键词，搜索站内文章。',
-
-    'archives.title': '归档',
-    'archives.empty': '还没有文章。',
-
-    'notfound.hint': '页面好像走丢了。',
-    'notfound.desc': '抱歉，没有找到你要找的页面。',
-    'notfound.home': '回到首页'
-  },
-  'zh-Hant': {
-    'nav.blog': '部落格',
-    'nav.writing': '寫作',
-    'nav.projects': '專案',
-    'nav.about': '關於',
-    'ui.search': '搜尋',
-    'ui.theme': '切換主題',
-    'ui.menu': '選單',
-
-    'home.title': '首頁',
-    'home.about': '關於',
-    'home.posts': '文章',
-    'home.education': '教育經歷',
-    'home.projects': '專案',
-    'home.hobbies': '興趣',
-    'home.playground': '遊樂場',
-    'duck.description': '停留一會兒，撥動一池漣漪。',
-    'duck.play': '開始互動',
-    'duck.pause': '暫停互動',
-    'duck.hint': '移動滑鼠或手指引導小鴨 · 點擊撥水 · 方向鍵移動，空白鍵製造漣漪',
-    'home.moreAbout': '了解更多',
-    'home.morePosts': '更多文章',
-
-    'about.title': '關於',
-    'about.education': '教育經歷',
-    'about.hobbies': '興趣愛好',
-    'about.tools': '常用工具',
-    'about.social': '社群網路',
-    'about.timeline': '時間線',
-    'about.contact': '聯絡方式',
-    'about.toolsIntro': '目前常用的工具：',
-    'tools.design': '設計',
-    'tools.efficiency': '效率',
-    'tools.development': '開發',
-    'tools.environment': '環境',
-    'tool.image': '圖像處理',
-    'tool.vector': '向量繪圖',
-    'tool.motion': '動效製作',
-    'tool.video': '影片剪輯',
-    'tool.browser': '瀏覽器',
-    'tool.note': '筆記',
-    'tool.markdown': 'Markdown 編輯器',
-    'tool.ide': '編輯器 / IDE',
-    'tool.linux': 'Linux 發行版',
-
-    'common.back': '返回',
-
-    'blog.title': '部落格',
-    'blog.empty': '還沒有文章。',
-    'blog.viewYears': '按年份查看全部 →',
-    'blog.tags': '標籤',
-    'blog.viewAll': '查看全部 →',
-
-    'writing.title': '寫作',
-    'writing.articles': '文章',
-    'writing.note': '部分文章的原文連結仍在整理中。',
-    'writing.official': '前往公眾號',
-
-    'projects.title': '專案',
-    'projects.github': 'GitHub 動態：',
-    'projects.list': '專案',
-    'link.site': '網站',
-    'link.github': 'GitHub',
-    'link.doc': '文件',
-    'link.release': '發佈',
-
-    'search.title': '搜尋',
-    'search.hint': '輸入關鍵詞，搜尋站內文章。',
-
-    'archives.title': '歸檔',
-    'archives.empty': '還沒有文章。',
-
-    'notfound.hint': '頁面好像走丟了。',
-    'notfound.desc': '抱歉，沒有找到你要找的頁面。',
-    'notfound.home': '回到首頁'
-  },
   en: {
     'nav.blog': 'Blog',
     'nav.writing': 'Writing',
@@ -184,6 +34,8 @@ export const dictionaries: Record<Lang, Record<string, string>> = {
     'about.timeline': 'Timeline',
     'about.contact': 'Contact',
     'about.toolsIntro': 'Tools I use:',
+    'about.socialIntro': 'You can find me here.',
+    'about.timelineIntro': 'A few moments that matter.',
     'tools.design': 'Design',
     'tools.efficiency': 'Productivity',
     'tools.development': 'Development',
@@ -228,6 +80,84 @@ export const dictionaries: Record<Lang, Record<string, string>> = {
     'notfound.hint': 'This page seems to be lost.',
     'notfound.desc': "Sorry, we couldn't find the page you're looking for.",
     'notfound.home': 'Back to home'
+  },
+  'zh-Hant': {
+    'nav.blog': '部落格',
+    'nav.writing': '寫作',
+    'nav.projects': '專案',
+    'nav.about': '關於',
+    'ui.search': '搜尋',
+    'ui.theme': '切換主題',
+    'ui.menu': '選單',
+
+    'home.title': '首頁',
+    'home.about': '關於',
+    'home.posts': '文章',
+    'home.education': '教育經歷',
+    'home.projects': '專案',
+    'home.hobbies': '興趣',
+    'home.playground': '遊樂場',
+    'duck.description': '停留一會兒，撥動一池漣漪。',
+    'duck.play': '開始互動',
+    'duck.pause': '暫停互動',
+    'duck.hint': '移動滑鼠或手指引導小鴨 · 點擊撥水 · 方向鍵移動，空白鍵製造漣漪',
+    'home.moreAbout': '了解更多',
+    'home.morePosts': '更多文章',
+
+    'about.title': '關於',
+    'about.education': '教育經歷',
+    'about.hobbies': '興趣愛好',
+    'about.tools': '常用工具',
+    'about.social': '社群網路',
+    'about.timeline': '時間線',
+    'about.contact': '聯絡方式',
+    'about.toolsIntro': '目前常用的工具：',
+    'about.socialIntro': '可以透過以下方式找到我。',
+    'about.timelineIntro': '一些重要的時刻。',
+    'tools.design': '設計',
+    'tools.efficiency': '效率',
+    'tools.development': '開發',
+    'tools.environment': '環境',
+    'tool.image': '圖像處理',
+    'tool.vector': '向量繪圖',
+    'tool.motion': '動效製作',
+    'tool.video': '影片剪輯',
+    'tool.browser': '瀏覽器',
+    'tool.note': '筆記',
+    'tool.markdown': 'Markdown 編輯器',
+    'tool.ide': '編輯器 / IDE',
+    'tool.linux': 'Linux 發行版',
+
+    'common.back': '返回',
+
+    'blog.title': '部落格',
+    'blog.empty': '還沒有文章。',
+    'blog.viewYears': '按年份查看全部 →',
+    'blog.tags': '標籤',
+    'blog.viewAll': '查看全部 →',
+
+    'writing.title': '寫作',
+    'writing.articles': '文章',
+    'writing.note': '部分文章的原文連結仍在整理中。',
+    'writing.official': '前往公眾號',
+
+    'projects.title': '專案',
+    'projects.github': 'GitHub 動態：',
+    'projects.list': '專案',
+    'link.site': '網站',
+    'link.github': 'GitHub',
+    'link.doc': '文件',
+    'link.release': '發佈',
+
+    'search.title': '搜尋',
+    'search.hint': '輸入關鍵詞，搜尋站內文章。',
+
+    'archives.title': '歸檔',
+    'archives.empty': '還沒有文章。',
+
+    'notfound.hint': '頁面好像走丟了。',
+    'notfound.desc': '抱歉，沒有找到你要找的頁面。',
+    'notfound.home': '回到首頁'
   }
 }
 
@@ -247,7 +177,6 @@ export function titleKeyFor(path: string) {
 }
 
 export const langLabels: Record<Lang, string> = {
-  zh: '简',
   en: 'EN',
   'zh-Hant': '繁'
 }

@@ -14,10 +14,10 @@ export const theme: ThemeUserConfig = {
   socialCard: '/images/social-card.png',
   /** Specify the default language for this site. */
   locale: {
-    lang: 'zh-CN',
-    attrs: 'zh_CN',
+    lang: 'en',
+    attrs: 'en_US',
     // Date locale
-    dateLocale: 'zh-CN',
+    dateLocale: 'en-US',
     dateOptions: {
       day: 'numeric',
       month: 'short',
@@ -48,10 +48,10 @@ export const theme: ThemeUserConfig = {
   /** Configure the header of your site. */
   header: {
     menu: [
-      { title: '博客', link: '/blog' },
-      { title: '写作', link: '/writing' },
-      { title: '项目', link: '/projects' },
-      { title: '关于', link: '/about' }
+      { title: 'Blog', link: '/blog' },
+      { title: 'Writing', link: '/writing' },
+      { title: 'Projects', link: '/projects' },
+      { title: 'About', link: '/about' }
     ]
   },
 

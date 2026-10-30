@@ -5,27 +5,27 @@ import PageLayout from '@/layouts/BaseLayout.astro'
 import { integ } from '@/site-config'
 
 const meta = {
-  description: '搜索站内文章',
-  title: '搜索'
+  description: 'Search posts on this site',
+  title: 'Search'
 }
 ---
 
 <PageLayout {meta}>
-  <Button href='/blog' variant='back'><span data-i18n='common.back'>返回</span></Button>
+  <Button href='/blog' variant='back'><span data-i18n='common.back'>Back</span></Button>
   <main class='mt-6 lg:mt-10'>
     <div id='content-header' class='animate'>
-      <h1 class='mb-6 text-3xl font-medium' data-i18n='search.title'>搜索</h1>
+      <h1 class='mb-6 text-3xl font-medium' data-i18n='search.title'>Search</h1>
     </div>
 
     <div id='content' class='animate'>
       {
         integ.pagefind ? (
           <>
-            <p data-i18n='search.hint'>输入关键词，搜索站内文章。</p>
+            <p data-i18n='search.hint'>Enter a keyword to search posts on this site.</p>
             <PFSearch />
           </>
         ) : (
-          <p>站内搜索当前未启用。</p>
+          <p>Site search is currently disabled.</p>
         )
       }
     </div>

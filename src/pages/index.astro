@@ -29,7 +29,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
 ---
 
-<PageLayout meta={{ title: '首页' }} highlightColor='#659EB9'>
+<PageLayout meta={{ title: 'Home' }} highlightColor='#659EB9'>
   <main class='flex w-full flex-col items-center'>
     <section class='animate mb-10 flex flex-col items-center gap-y-7' id='content-header'>
       <img
@@ -62,18 +62,18 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
     </section>
 
     <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
-      <Section title='关于' i18n='home.about'>
+      <Section title='About' i18n='home.about'>
         <p class='text-muted-foreground'>
           于尘世借一程风雨，于天地寻一处清欢。
         </p>
         <p class='text-muted-foreground italic'>
           "As long as you truly love something, it will shine."
         </p>
-        <Button class='w-fit self-end' href='/about' variant='ahead'><span data-i18n='home.moreAbout'>了解更多</span></Button>
+        <Button class='w-fit self-end' href='/about' variant='ahead'><span data-i18n='home.moreAbout'>More about me</span></Button>
       </Section>
       {
         allPostsByDate.length > 0 && (
-          <Section title='文章' i18n='home.posts'>
+          <Section title='Posts' i18n='home.posts'>
             <ul class='flex flex-col gap-y-1.5 sm:gap-y-2'>
               {allPostsByDate.map((p) => (
                 <li class='flex flex-col gap-x-2 sm:flex-row'>
@@ -81,7 +81,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
                 </li>
               ))}
             </ul>
-            <Button class='w-fit self-end' href='/blog' variant='ahead'><span data-i18n='home.morePosts'>更多文章</span></Button>
+            <Button class='w-fit self-end' href='/blog' variant='ahead'><span data-i18n='home.morePosts'>More posts</span></Button>
           </Section>
         )
       }
@@ -115,7 +115,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
       />
     </Section> */
       }
-      <Section title='教育经历' i18n='home.education'>
+      <Section title='Education' i18n='home.education'>
         <Card heading='南京工业大学' subheading='地理空间信息工程' date='2023年9月 - 至今'>
           <img class='absolute end-0 z-0 m-0 -my-3 hidden h-full w-1/2 object-cover opacity-40 sm:block' src='/images/nanjing-tech.svg' />
         </Card>
@@ -124,7 +124,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
         </Card>
       </Section>
 
-      <Section title='项目' i18n='home.projects'>
+      <Section title='Projects' i18n='home.projects'>
         <div class='grid grid-cols-1 gap-3 sm:grid-cols-2'>
           {projects.map((p) => (
             <ProjectCard
@@ -138,12 +138,12 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
         </div>
       </Section>
 
-      <Section title='游乐场' i18n='home.playground'>
+      <Section title='Playground' i18n='home.playground'>
         <DuckPlayground />
       </Section>
 
-      <Section title='兴趣' i18n='home.hobbies'>
-        <SkillLayout title='兴趣爱好' skills={hobbies} />
+      <Section title='Interests' i18n='home.hobbies'>
+        <SkillLayout title='Interests' skills={hobbies} />
       </Section>
     </div>
     <Quote class='mt-12' />
