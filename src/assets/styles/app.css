@@ -1,37 +1,50 @@
-/* Theme — 配色：亮色宣白 / 暗色近黑 + 墨蓝强调色 */
+/* 水池主题 */
 :root {
-  /* Primary：唯一强调色，墨蓝 */
-  --primary: 215 40% 34%;
-  /* Foreground */
-  --foreground: 0 0% 10%;
-  --muted-foreground: 0 0% 40%;
-  /* Background */
-  --background: 60 14% 98%;
-  --muted: 60 7% 95%;
-  --card: 0 0% 96%;
-
-  /* Basic */
-  --border: 60 5% 87%;
-  --input: 60 5% 90%;
-  --ring: 215 40% 34%;
+  --primary: 214 83% 40%;
+  --foreground: 218 57% 16%;
+  --muted-foreground: 215 29% 35%;
+  --background: 207 76% 97%;
+  --muted: 210 60% 93%;
+  --card: 205 70% 98%;
+  --border: 211 44% 84%;
+  --input: 211 43% 86%;
+  --ring: 214 83% 40%;
   --radius: 0.5rem;
+  --water-light-opacity: 0.16;
 }
-.dark {
-  /* Primary */
-  --primary: 210 40% 72%;
-  /* Foreground */
-  --foreground: 40 8% 91%;
-  --muted-foreground: 40 4% 60%;
-  /* Background */
-  --background: 240 6% 6%;
-  --muted: 240 4% 11%;
-  --card: 240 4% 9%;
 
-  /* Basic */
-  --border: 240 4% 19%;
-  --input: 240 4% 15%;
-  --ring: 210 40% 72%;
+.dark {
+  --primary: 198 100% 76%;
+  --foreground: 203 65% 93%;
+  --muted-foreground: 211 38% 74%;
+  --background: 219 52% 10%;
+  --muted: 218 47% 16%;
+  --card: 218 49% 13%;
+  --border: 214 37% 29%;
+  --input: 214 37% 34%;
+  --ring: 198 100% 76%;
+  --water-light-opacity: 0.21;
 }
+
+body {
+  isolation: isolate;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: url('/playground/Whale-Mumu/assets/water.jpg') center top / cover no-repeat;
+  opacity: var(--water-light-opacity);
+  mask-image: radial-gradient(ellipse at top right, #000, transparent 76%);
+}
+
+.dark body::before {
+  mix-blend-mode: screen;
+}
+
 :root {
   --un-default-border-color: hsl(var(--border) / 1);
 }
@@ -70,7 +83,7 @@ footer a[rel='me'] {
 
 /* 暗色下输入框描边需与背景拉开距离，才看得出输入区域 */
 html.dark #site-search {
-  --pagefind-ui-border: hsl(240 4% 42% / 1);
+  --pagefind-ui-border: hsl(var(--input));
 }
 
 /* GitHub 热力图是白底外部图片，暗色下反相以融入背景 */

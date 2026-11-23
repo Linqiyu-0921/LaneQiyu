@@ -1,7 +1,7 @@
 'use strict';
 const pool = document.querySelector('.pool');
 const canvas = pool.querySelector('canvas');
-const duck = pool.querySelector('.duck');
+const whale = pool.querySelector('.whale');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const gl = canvas.getContext('webgl', { alpha: false, antialias: false, powerPreference: 'low-power' });
 const state = { x: .61, y: .42, tx: .61, ty: .42, vx: 0, vy: 0, angle: -.8, time: 0, lastInput: 0, roaming: false, heading: 0, cruise: 0, activity: 0, float: 0, roll: 0 };
@@ -326,7 +326,7 @@ function render(now) {
   state.roll += (Math.max(-.045, Math.min(.045, surfaceRoll)) - state.roll) * (1 - Math.exp(-8 * dt));
   const bob = reducedMotion ? 0 : -state.float;
   const roll = reducedMotion ? 0 : state.roll;
-  duck.style.transform = `translate(${state.x * width}px, ${state.y * height + bob}px) translate(-50%, -50%) rotate(${state.angle + roll}rad)`;
+  whale.style.transform = `translate(${state.x * width}px, ${state.y * height + bob}px) translate(-50%, -50%) rotate(${state.angle + roll}rad)`;
   frameId = playing ? requestAnimationFrame(render) : 0;
 }
 if (gl) {
@@ -347,9 +347,9 @@ function setPlaying(value) {
   if (playing) { lastFrame = performance.now(); frameId = requestAnimationFrame(render); }
 }
 window.addEventListener('message', event => {
-  if (event.origin !== location.origin || event.source !== parent || event.data?.type !== 'qqq-playback') return;
+  if (event.origin !== location.origin || event.source !== parent || event.data?.type !== 'whale-mumu-playback') return;
   setPlaying(event.data.playing === true);
 });
 document.addEventListener('visibilitychange', () => { if (document.hidden) setPlaying(false); });
 setPlaying(false);
-parent.postMessage({ type: 'qqq-ready' }, location.origin);
+parent.postMessage({ type: 'whale-mumu-ready' }, location.origin);

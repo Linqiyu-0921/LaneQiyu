@@ -1,0 +1,64 @@
+<whale-mumu data-pagefind-ignore>
+  <div class='water-preview' id='whale-water'>
+    <img class='water-cover' src='/playground/Whale-Mumu/assets/water.jpg' alt='' loading='lazy' />
+    <img class='whale-cover' src='/playground/Whale-Mumu/assets/mumu-whale-overhead-v01.webp' alt='' loading='lazy' />
+  </div>
+</whale-mumu>
+
+<script>
+  class WhaleMumu extends HTMLElement {
+    frame: HTMLIFrameElement | null = null
+    motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)')
+    visible = false
+    observer: IntersectionObserver | null = null
+
+    connectedCallback() {
+      this.motionPreference.addEventListener('change', this.sync)
+      window.addEventListener('message', this.onMessage)
+      document.addEventListener('visibilitychange', this.sync)
+      this.observer = new IntersectionObserver(([entry]) => {
+        this.visible = entry.isIntersecting
+        this.sync()
+      }, { threshold: 0.05 })
+      this.observer.observe(this.querySelector('.water-preview')!)
+    }
+
+    onMessage = (event: MessageEvent) => {
+      if (event.origin !== location.origin || event.source !== this.frame?.contentWindow) return
+      if (event.data?.type === 'whale-mumu-ready') this.sync()
+    }
+
+    sync = () => {
+      const active = this.visible && !document.hidden && !this.motionPreference.matches
+      if (active && !this.frame) {
+        this.frame = document.createElement('iframe')
+        this.frame.title = 'Whale-Mumu'
+        this.frame.src = '/playground/Whale-Mumu/index.html'
+        this.querySelector('.water-preview')!.append(this.frame)
+      }
+      this.dataset.active = String(active)
+      if (this.frame) this.frame.tabIndex = active ? 0 : -1
+      this.frame?.contentWindow?.postMessage({ type: 'whale-mumu-playback', playing: active }, location.origin)
+    }
+
+    disconnectedCallback() {
+      this.visible = false
+      this.sync()
+      this.observer?.disconnect()
+      this.motionPreference.removeEventListener('change', this.sync)
+      window.removeEventListener('message', this.onMessage)
+      document.removeEventListener('visibilitychange', this.sync)
+    }
+  }
+  if (!customElements.get('whale-mumu')) customElements.define('whale-mumu', WhaleMumu)
+</script>
+
+<style>
+  whale-mumu { display: block; position: relative; width: 100%; min-width: 0; margin-top: 2rem; }
+  .water-preview { position: relative; overflow: hidden; border-radius: 1rem; height: clamp(440px, 75svh, 900px); background: #087bfa; }
+  .water-cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; }
+  .whale-cover { position: absolute; left: 61%; top: 42%; width: 11%; transform: translate(-50%, -50%) rotate(-.8rad); filter: drop-shadow(3px 7px 4px #004a8d48); }
+  .water-preview :global(iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  whale-mumu[data-active='false'] :global(iframe) { visibility: hidden; pointer-events: none; }
+  @media (max-width: 600px) { .water-preview { height: 70svh; min-height: 360px; } .whale-cover { width: 20%; } }
+</style>
