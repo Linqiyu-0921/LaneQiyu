@@ -1,0 +1,252 @@
+---
+interface Article {
+  title: string
+  excerpt: string
+  date: string
+  url: string
+  cover: string
+}
+
+const articles: Article[] = [
+  {
+    title: '走在时间的旧房子里，在立夏之后',
+    excerpt: '这几日一直想坚持把一年的日子记录下，以此振奋寡淡而不坚定的文字手记日志工作。',
+    date: '2026-05-11',
+    url: 'https://mp.weixin.qq.com/s/Y96vLna-Tin8A5k4yQoatA',
+    cover: '/images/wechat-covers/Y96vLna-Tin8A5k4yQoatA.webp'
+  },
+  {
+    title: '谷雨之后，梧桐絮如雨下',
+    excerpt: '应该写一些什么，纪念一下这个日子。其实也不是什么很重要的日子，就是很平常的一天。大概是，今天足够热吧。',
+    date: '2026-04-29',
+    url: 'https://mp.weixin.qq.com/s/orZTtinbNV-xEX54-0Hb_g',
+    cover: '/images/wechat-covers/orZTtinbNV-xEX54-0Hb_g.webp'
+  },
+  {
+    title: '2025没有看到一场日出。',
+    excerpt: '二零二五年这一年，总是让我想起进退两难的泥沼——每迈一步都几乎把整只鞋陷掉那般滞重而深沉。',
+    date: '2025-12-31',
+    url: 'https://mp.weixin.qq.com/s/nYl3D3T-BbNsgJobMAlxwg',
+    cover: '/images/wechat-covers/nYl3D3T-BbNsgJobMAlxwg.webp'
+  },
+  {
+    title: '秋浓，桂花香与雪山白',
+    excerpt: '又一年国庆中秋，今年的秋好像晚来了几天，但是秋天如约而至。南京的梧桐已经金黄落叶。',
+    date: '2025-10-09',
+    url: 'https://mp.weixin.qq.com/s/lLd10jX8hkK6PDlu9J11eQ',
+    cover: '/images/wechat-covers/lLd10jX8hkK6PDlu9J11eQ.webp'
+  },
+  {
+    title: '告诉北方，我不会在五月离开',
+    excerpt: '北方的五月是干燥的，风里带着沙土的味道。但我知道，有些告别不需要等到秋天。',
+    date: '2025-09-08',
+    url: 'https://mp.weixin.qq.com/s/fCLtiFTGoqOCxQ-8ucpKlg',
+    cover: '/images/wechat-covers/fCLtiFTGoqOCxQ-8ucpKlg.webp'
+  },
+  {
+    title: '入梦一场，又见花朝，红楼莫忘。',
+    excerpt: '高中时，很爱《红楼》。全书读下一遍，喜欢的章节回目更是多遍返回，也因其名字带有一个霖字，会常常被唤作"林妹妹"。',
+    date: '2025-03-01',
+    url: 'https://mp.weixin.qq.com/s/d8YT2JQy-90RAVYfUPvk5A',
+    cover: '/images/wechat-covers/d8YT2JQy-90RAVYfUPvk5A.webp'
+  },
+  {
+    title: '站在能分割世界的桥上，我看春风。',
+    excerpt: '好久没有写一些东西了。回到丽江后日子感觉过的更加快了，这个小城似乎真的有了世外桃源的韵味。',
+    date: '2025-01-22',
+    url: 'https://mp.weixin.qq.com/s/sRdkUPPWz_VQNK376pnvRg',
+    cover: '/images/wechat-covers/sRdkUPPWz_VQNK376pnvRg.webp'
+  },
+  {
+    title: '快留下来！要说再见2024！',
+    excerpt: '"这一年我们可以不用更好但是要值得。"——安溥。抓住2024最后的时间记录一点文字。',
+    date: '2024-12-31',
+    url: 'https://mp.weixin.qq.com/s/Lx1iWSpPLph284xinIobvA',
+    cover: '/images/wechat-covers/Lx1iWSpPLph284xinIobvA.webp'
+  },
+  {
+    title: '并不可惜的一分钟，还好我在路上！',
+    excerpt: '一分钟能做什么？足够让一个人从犹豫变成决定，足够让一趟列车从站台驶向远方。',
+    date: '2024-11-08',
+    url: 'https://mp.weixin.qq.com/s/-5Y0wzoWxaUlgciaKlGyzA',
+    cover: '/images/wechat-covers/-5Y0wzoWxaUlgciaKlGyzA.webp'
+  },
+  {
+    title: '五月，有人相爱，有人徘徊。',
+    excerpt: '五月的风带着栀子花的香气，穿过城市的每一条街道。有人在这个季节相遇，也有人在这个季节告别。',
+    date: '2024-05-22',
+    url: 'https://mp.weixin.qq.com/s/sdmsTVCQeFlRxeMaHWp-EA',
+    cover: '/images/wechat-covers/sdmsTVCQeFlRxeMaHWp-EA.webp'
+  },
+  {
+    title: '慢慢走，会看到的（2023说说话。）',
+    excerpt: '火车咚咚向前，路程摇摇晃晃。在从南京到成都的火车上，终于有时间和情绪来写这篇关于2023年的年度总结。',
+    date: '2024-02-26',
+    url: 'https://mp.weixin.qq.com/s/hLu34FBeQLPtGo_EES15UQ',
+    cover: '/images/wechat-covers/hLu34FBeQLPtGo_EES15UQ.webp'
+  }
+]
+---
+
+<section id='wechat' class='wechat' aria-labelledby='wechat-title'>
+  <div class='wechat-heading'>
+    <h2 id='wechat-title' data-i18n='blog.wechatTitle'>WeChat articles</h2>
+    <p lang='zh-CN'>乘以零的万能删除</p>
+  </div>
+
+  <ul class='article-grid'>
+    {articles.map((article, index) => (
+      <li class:list={{ featured: index === 0 }}>
+        <article class='article-card' lang='zh-CN'>
+          <img
+            class='article-cover'
+            src={article.cover}
+            alt=''
+            loading={index === 0 ? 'eager' : 'lazy'}
+            decoding='async'
+          />
+          <div class='article-copy'>
+            <time datetime={article.date}>{article.date}</time>
+            <h3><a href={article.url}>{article.title}</a></h3>
+            <p>{article.excerpt}</p>
+          </div>
+        </article>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .wechat {
+    margin-block-start: 2.5rem;
+    scroll-margin-top: 6rem;
+  }
+
+  .wechat-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: .65rem 1rem;
+    border-block-end: 1px solid hsl(var(--border));
+    padding-block-end: 1rem;
+    margin-block-end: 1.5rem;
+  }
+
+  .wechat-heading h2 {
+    font-size: clamp(1.35rem, 3vw, 1.85rem);
+    font-weight: 600;
+  }
+
+  .wechat-heading p,
+  time,
+  .article-copy p {
+    color: hsl(var(--muted-foreground));
+  }
+
+  .wechat-heading p,
+  time {
+    font-size: .8rem;
+  }
+
+  .article-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .article-grid li {
+    min-width: 0;
+  }
+
+  .article-grid .featured {
+    grid-column: 1 / -1;
+  }
+
+  .article-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid hsl(var(--border));
+    border-radius: .9rem;
+    background: hsl(var(--card));
+    color: hsl(var(--foreground));
+  }
+
+  h3 a {
+    text-decoration: underline;
+    text-decoration-color: hsl(var(--primary) / .35);
+    text-underline-offset: .2em;
+  }
+
+  h3 a:hover {
+    text-decoration-color: currentColor;
+  }
+
+  h3 a:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 3px;
+  }
+
+  .article-cover {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2.35;
+    object-fit: cover;
+    background: hsl(var(--muted));
+  }
+
+  .article-copy {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .6rem;
+    padding: 1.2rem;
+  }
+
+  time {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: .025em;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .article-copy p {
+    font-size: .9rem;
+    line-height: 1.75;
+  }
+
+  .featured .article-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  }
+
+  .featured .article-cover {
+    height: 100%;
+  }
+
+  .featured .article-copy {
+    padding: clamp(1.4rem, 4vw, 2.25rem);
+  }
+
+  .featured h3 {
+    font-size: clamp(1.3rem, 2.6vw, 1.85rem);
+  }
+
+  @media (max-width: 900px) {
+    .article-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 620px) {
+    .article-grid,
+    .featured .article-card { grid-template-columns: minmax(0, 1fr); }
+    .featured .article-cover { height: auto; }
+  }
+</style>

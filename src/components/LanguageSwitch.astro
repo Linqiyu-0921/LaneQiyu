@@ -69,8 +69,7 @@ const langs = ['en', 'zh-Hant'] as const
         'social-networks': 'about.social',
         timeline: 'about.timeline',
         contact: 'about.contact'
-      },
-      '/writing/': { articles: 'writing.articles' }
+      }
     }
     Object.entries(tocKeys[location.pathname] ?? {}).forEach(([slug, key]) => {
       const link = document.querySelector<HTMLElement>(`a.toc-item[href="#${slug}"]`)

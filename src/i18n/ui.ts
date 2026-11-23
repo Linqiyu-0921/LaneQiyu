@@ -5,7 +5,6 @@ export const defaultLang: Lang = 'en'
 export const dictionaries: Record<Lang, Record<string, string>> = {
   en: {
     'nav.blog': 'Blog',
-    'nav.writing': 'Writing',
     'nav.field-notes': 'Field Notes',
     'nav.projects': 'Projects',
     'nav.about': 'About',
@@ -54,6 +53,7 @@ export const dictionaries: Record<Lang, Record<string, string>> = {
     'common.back': 'Back',
 
     'blog.title': 'Blog',
+    'blog.intro': 'Essays, journals and notes from the road.',
     'blog.empty': 'No posts yet.',
     'blog.viewYears': 'View all posts by years →',
     'blog.tags': 'Tags',
@@ -77,10 +77,7 @@ export const dictionaries: Record<Lang, Record<string, string>> = {
     'field.emptyTitle': 'The first note is still on its way.',
     'field.emptyDesc': 'This space is ready for observations from the road.',
     'field.end': 'A PLACE TO BEGIN',
-    'writing.title': 'Writing',
-    'writing.articles': 'Articles',
-    'writing.note': 'Some article links are still being compiled.',
-    'writing.official': 'Visit WeChat account',
+    'blog.wechatTitle': 'WeChat articles',
 
     'projects.title': 'Projects',
     'projects.github': 'GitHub activity:',
@@ -102,7 +99,6 @@ export const dictionaries: Record<Lang, Record<string, string>> = {
   },
   'zh-Hant': {
     'nav.blog': '部落格',
-    'nav.writing': '寫作',
     'nav.field-notes': '田野手記',
     'nav.projects': '專案',
     'nav.about': '關於',
@@ -151,6 +147,7 @@ export const dictionaries: Record<Lang, Record<string, string>> = {
     'common.back': '返回',
 
     'blog.title': '部落格',
+    'blog.intro': '散文、日記與旅途中的記錄。',
     'blog.empty': '還沒有文章。',
     'blog.viewYears': '按年份查看全部 →',
     'blog.tags': '標籤',
@@ -174,10 +171,7 @@ export const dictionaries: Record<Lang, Record<string, string>> = {
     'field.emptyTitle': '第一則手記，還在路上。',
     'field.emptyDesc': '這裡留給未來沿途的觀察。',
     'field.end': '從這裡開始',
-    'writing.title': '寫作',
-    'writing.articles': '文章',
-    'writing.note': '部分文章的原文連結仍在整理中。',
-    'writing.official': '前往公眾號',
+    'blog.wechatTitle': '公眾號文章',
 
     'projects.title': '專案',
     'projects.github': 'GitHub 動態：',
@@ -202,7 +196,6 @@ export const dictionaries: Record<Lang, Record<string, string>> = {
 export const titleKeys: Record<string, string> = {
   '/': 'home.title',
   '/blog/': 'blog.title',
-  '/writing/': 'writing.title',
   '/field-notes/': 'field.title',
   '/projects/': 'projects.title',
   '/about/': 'about.title',

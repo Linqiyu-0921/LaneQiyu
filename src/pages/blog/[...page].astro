@@ -6,6 +6,7 @@ import { Paginator, PostPreview } from 'astro-pure/components/pages'
 import { getBlogCollection, getUniqueTagsWithCount, sortMDByDate } from 'astro-pure/server'
 import { Button, Icon } from 'astro-pure/user'
 import PageLayout from '@/layouts/BaseLayout.astro'
+import WeChatArticles from '@/components/blog/WeChatArticles.astro'
 import config from '@/site-config'
 
 export const prerender = true
@@ -52,13 +53,12 @@ const paginationProps = {
 <PageLayout {meta}>
   <Button href='/' variant='back'><span data-i18n='common.back'>Back</span></Button>
   <main class='mt-6 lg:mt-10'>
-    <div id='content-header' class='animate'>
-      <h1 class='mb-6 mt-6 text-3xl font-medium sm:mt-10' data-i18n='blog.title'>Blog</h1>
+    <div id='content-header' class='animate blog-heading'>
+      <h1 data-i18n='blog.title'>Blog</h1>
+      <p data-i18n='blog.intro'>Essays, journals and notes from the road.</p>
     </div>
     {
-      page.data.length === 0 ? (
-        <p data-i18n='blog.empty'>No posts yet.</p>
-      ) : (
+      page.data.length > 0 && (
         <div class='grid gap-y-16 sm:grid-cols-[3fr_1fr] sm:gap-x-8'>
           <section aria-label='Blog posts list' class='animate' id='content'>
             {/* header */}
@@ -106,5 +106,24 @@ const paginationProps = {
         </div>
       )
     }
+    {page.currentPage === 1 && <WeChatArticles />}
   </main>
 </PageLayout>
+
+<style>
+  .blog-heading {
+    margin-block: 2.25rem 2rem;
+  }
+
+  .blog-heading h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(3.25rem, 8vw, 5.75rem);
+    line-height: 1;
+    letter-spacing: -.05em;
+  }
+
+  .blog-heading p {
+    margin-block-start: 1rem;
+    color: hsl(var(--muted-foreground));
+  }
+</style>
